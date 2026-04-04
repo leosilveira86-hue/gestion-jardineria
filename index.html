@@ -3,24 +3,26 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>GestiónVerde</title>
+<title>Cireneos — Gestión</title>
 <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <style>
   :root {
-    --green-dark:#1a2e1a;--green-mid:#2d5a27;--green-accent:#6dbd5a;--green-pale:#e8f5e4;
-    --earth:#8B6914;--earth-light:#f5edd6;--white:#f9faf7;--gray-100:#f0f2ee;
-    --gray-200:#dde3d9;--gray-400:#8a9686;--gray-600:#4a5247;--text:#1a2419;
-    --danger:#c0392b;--warning:#e67e22;--radius:12px;--shadow:0 2px 16px rgba(26,46,26,.10);
+    --olive:#4a5c2f;--olive-dark:#2e3a1c;--olive-mid:#5c7038;--olive-light:#7a9048;
+    --olive-pale:#eef2e6;--cream:#f5f2eb;--earth:#8B6914;--earth-light:#f5edd6;
+    --gray-100:#f2f0eb;--gray-200:#ddd9ce;--gray-400:#8a8678;--gray-600:#4a4740;
+    --text:#1e1c18;--danger:#c0392b;--warning:#e67e22;
+    --radius:12px;--shadow:0 2px 16px rgba(46,58,28,.10);
   }
   *{box-sizing:border-box;margin:0;padding:0}
-  body{font-family:'DM Sans',sans-serif;background:var(--white);color:var(--text);min-height:100vh;max-width:480px;margin:0 auto}
-  .header{background:var(--green-dark);color:white;padding:18px 20px 14px;position:sticky;top:0;z-index:100;display:flex;align-items:center;justify-content:space-between}
-  .header-title{font-size:18px;font-weight:600}
-  .header-sub{font-size:11px;color:var(--green-accent);font-weight:500;margin-top:1px}
-  .nav{display:flex;background:white;border-bottom:1px solid var(--gray-200);overflow-x:auto;position:sticky;top:66px;z-index:99}
+  body{font-family:'DM Sans',sans-serif;background:var(--cream);color:var(--text);min-height:100vh;max-width:480px;margin:0 auto}
+  .header{background:var(--olive-dark);color:white;padding:14px 16px;position:sticky;top:0;z-index:100;display:flex;align-items:center;justify-content:space-between}
+  .header-logo{height:32px;object-fit:contain}
+  .notif-btn{background:rgba(255,255,255,.15);border:1px solid rgba(255,255,255,.3);border-radius:8px;color:white;padding:6px 10px;font-size:11px;font-weight:600;cursor:pointer;font-family:'DM Sans',sans-serif;white-space:nowrap}
+  .notif-btn.on{background:var(--olive-light);border-color:var(--olive-light)}
+  .nav{display:flex;background:white;border-bottom:2px solid var(--gray-200);overflow-x:auto;position:sticky;top:60px;z-index:99}
   .nav::-webkit-scrollbar{display:none}
-  .nav-btn{flex:none;padding:12px 16px;border:none;background:none;font-family:'DM Sans',sans-serif;font-size:13px;font-weight:500;color:var(--gray-400);cursor:pointer;border-bottom:2px solid transparent;white-space:nowrap;transition:all .2s}
-  .nav-btn.active{color:var(--green-mid);border-bottom-color:var(--green-accent)}
+  .nav-btn{flex:none;padding:11px 13px;border:none;background:none;font-family:'DM Sans',sans-serif;font-size:12px;font-weight:500;color:var(--gray-400);cursor:pointer;border-bottom:3px solid transparent;white-space:nowrap;transition:all .2s;margin-bottom:-2px}
+  .nav-btn.active{color:var(--olive);border-bottom-color:var(--olive-light)}
   .content{padding:16px}
   .card{background:white;border-radius:var(--radius);border:1px solid var(--gray-200);padding:16px;margin-bottom:12px;box-shadow:var(--shadow)}
   .card-header{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:10px}
@@ -30,16 +32,15 @@
   .badge{display:inline-block;padding:3px 10px;border-radius:99px;font-size:11px;font-weight:600}
   .badge-pending{background:#fff3cd;color:#856404}
   .badge-progress{background:#cfe2ff;color:#084298}
-  .badge-done{background:var(--green-pale);color:var(--green-mid)}
-  .badge-active{background:var(--green-pale);color:var(--green-mid)}
+  .badge-done,.badge-active{background:var(--olive-pale);color:var(--olive)}
   .badge-paused{background:#f8d7da;color:#842029}
   .badge-type{background:var(--earth-light);color:var(--earth)}
   .btn{display:inline-flex;align-items:center;gap:6px;padding:10px 18px;border-radius:8px;border:none;font-family:'DM Sans',sans-serif;font-size:13px;font-weight:600;cursor:pointer;transition:all .2s}
-  .btn-primary{background:var(--green-mid);color:white}
+  .btn-primary{background:var(--olive);color:white}
   .btn-secondary{background:var(--gray-100);color:var(--gray-600)}
   .btn-danger{background:#fde8e8;color:var(--danger)}
   .btn-sm{padding:6px 12px;font-size:12px}
-  .fab{position:fixed;bottom:24px;right:24px;width:56px;height:56px;border-radius:50%;background:var(--green-mid);color:white;border:none;font-size:26px;display:flex;align-items:center;justify-content:center;cursor:pointer;box-shadow:0 4px 20px rgba(45,90,39,.4);z-index:200}
+  .fab{position:fixed;bottom:24px;right:24px;width:56px;height:56px;border-radius:50%;background:var(--olive);color:white;border:none;font-size:26px;display:flex;align-items:center;justify-content:center;cursor:pointer;box-shadow:0 4px 20px rgba(46,58,28,.35);z-index:200}
   .modal-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.5);z-index:300;align-items:flex-end}
   .modal-overlay.open{display:flex}
   .modal{background:white;border-radius:20px 20px 0 0;padding:24px 20px 32px;width:100%;max-height:90vh;overflow-y:auto;animation:slideUp .3s ease}
@@ -49,17 +50,17 @@
   .form-group{margin-bottom:14px}
   .form-label{font-size:12px;font-weight:600;color:var(--gray-600);margin-bottom:5px;display:block;text-transform:uppercase;letter-spacing:.4px}
   .form-control{width:100%;padding:11px 13px;border:1.5px solid var(--gray-200);border-radius:8px;font-family:'DM Sans',sans-serif;font-size:14px;color:var(--text);background:white;transition:border-color .2s;appearance:none}
-  .form-control:focus{outline:none;border-color:var(--green-accent)}
+  .form-control:focus{outline:none;border-color:var(--olive-light)}
   .form-row{display:grid;grid-template-columns:1fr 1fr;gap:10px}
   .form-actions{display:flex;gap:10px;margin-top:20px}
   .form-actions .btn{flex:1;justify-content:center}
   .stats-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:16px}
   .stat-card{background:white;border:1px solid var(--gray-200);border-radius:var(--radius);padding:14px;text-align:center}
-  .stat-num{font-size:28px;font-weight:700;color:var(--green-mid)}
+  .stat-num{font-size:28px;font-weight:700;color:var(--olive)}
   .stat-label{font-size:11px;color:var(--gray-400);margin-top:2px;font-weight:500}
   .task-item{display:flex;align-items:flex-start;gap:12px;padding:14px;background:white;border:1px solid var(--gray-200);border-radius:var(--radius);margin-bottom:10px}
   .task-check{width:22px;height:22px;border:2px solid var(--gray-200);border-radius:50%;flex-shrink:0;cursor:pointer;display:flex;align-items:center;justify-content:center;margin-top:1px;transition:all .2s}
-  .task-check.done{background:var(--green-accent);border-color:var(--green-accent);color:white;font-size:12px}
+  .task-check.done{background:var(--olive-light);border-color:var(--olive-light);color:white;font-size:12px}
   .task-info{flex:1}
   .task-title{font-size:14px;font-weight:600}
   .task-meta{font-size:12px;color:var(--gray-400);margin-top:3px}
@@ -67,357 +68,110 @@
   .empty-icon{font-size:40px;margin-bottom:10px}
   .empty-text{font-size:14px}
   .loading{text-align:center;padding:30px;color:var(--gray-400);font-size:14px}
-  .spinner{width:28px;height:28px;border:3px solid var(--gray-200);border-top-color:var(--green-accent);border-radius:50%;animation:spin .8s linear infinite;margin:0 auto 10px}
+  .spinner{width:28px;height:28px;border:3px solid var(--gray-200);border-top-color:var(--olive-light);border-radius:50%;animation:spin .8s linear infinite;margin:0 auto 10px}
   @keyframes spin{to{transform:rotate(360deg)}}
   .section-title{font-size:13px;font-weight:700;color:var(--gray-400);text-transform:uppercase;letter-spacing:.6px;margin-bottom:10px;margin-top:6px}
   .type-selector{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin-bottom:16px}
   .type-btn{padding:10px 6px;border:2px solid var(--gray-200);border-radius:10px;background:white;font-family:'DM Sans',sans-serif;font-size:12px;font-weight:600;color:var(--gray-400);cursor:pointer;text-align:center;transition:all .2s}
-  .type-btn.selected{border-color:var(--green-accent);color:var(--green-mid);background:var(--green-pale)}
+  .type-btn.selected{border-color:var(--olive-light);color:var(--olive);background:var(--olive-pale)}
   .type-btn .type-icon{font-size:20px;display:block;margin-bottom:4px}
-  .section-divider{font-size:12px;font-weight:700;color:var(--green-mid);text-transform:uppercase;letter-spacing:.5px;margin:16px 0 10px;padding-bottom:6px;border-bottom:1px solid var(--green-pale)}
+  .section-divider{font-size:12px;font-weight:700;color:var(--olive);text-transform:uppercase;letter-spacing:.5px;margin:16px 0 10px;padding-bottom:6px;border-bottom:1px solid var(--olive-pale)}
   .hidden{display:none!important}
   .contact-card{background:var(--gray-100);border-radius:8px;padding:10px 12px;margin-top:8px;font-size:13px;color:var(--gray-600)}
   .contact-row{display:flex;gap:6px;align-items:center;padding:3px 0}
+  .cal-nav{display:flex;align-items:center;justify-content:space-between;margin-bottom:12px}
+  .cal-nav-title{font-size:14px;font-weight:700}
+  .cal-nav-btn{background:var(--gray-100);border:none;border-radius:8px;width:32px;height:32px;font-size:18px;cursor:pointer;color:var(--olive);display:flex;align-items:center;justify-content:center}
+  .cal-wrapper{background:white;border-radius:var(--radius);border:1px solid var(--gray-200);overflow:hidden;box-shadow:var(--shadow)}
+  .cal-header{display:grid;grid-template-columns:40px repeat(7,1fr);background:var(--olive-dark)}
+  .cal-hcell{padding:8px 2px;text-align:center;color:white;font-size:10px;font-weight:700;text-transform:uppercase}
+  .cal-day-label{display:flex;flex-direction:column;align-items:center;gap:1px}
+  .cal-day-name{opacity:.75;font-size:9px}
+  .cal-day-num{font-size:13px;font-weight:700}
+  .today-circle{background:var(--olive-light);border-radius:50%;width:20px;height:20px;display:flex;align-items:center;justify-content:center;margin:0 auto}
+  .cal-scroll{overflow-y:auto;max-height:460px}
+  .cal-body{display:grid;grid-template-columns:40px repeat(7,1fr);position:relative}
+  .cal-time{font-size:9px;color:var(--gray-400);text-align:right;padding:0 4px 0 0;height:52px;display:flex;align-items:flex-start;padding-top:4px;border-right:1px solid var(--gray-200);border-bottom:1px solid var(--gray-100)}
+  .cal-cell{border-right:1px solid var(--gray-200);border-bottom:1px solid var(--gray-100);height:52px;position:relative}
+  .cal-cell:last-child{border-right:none}
+  .cal-event{position:absolute;left:1px;right:1px;border-radius:4px;padding:2px 3px;font-size:9px;font-weight:700;overflow:hidden;cursor:pointer;z-index:5;line-height:1.3}
+  .ev-pending{background:#fff3cd;color:#856404;border-left:2px solid #e6ac00}
+  .ev-progress{background:#cfe2ff;color:#084298;border-left:2px solid #2980b9}
+  .ev-done{background:var(--olive-pale);color:var(--olive);border-left:2px solid var(--olive-light)}
+  .cal-now{position:absolute;left:0;right:0;height:2px;background:var(--danger);z-index:10;pointer-events:none}
+  .cal-now::before{content:'';position:absolute;left:-4px;top:-4px;width:10px;height:10px;border-radius:50%;background:var(--danger)}
+  .cal-legend{display:flex;gap:12px;margin-top:10px;flex-wrap:wrap}
+  .cal-legend-item{display:flex;align-items:center;gap:4px;font-size:10px;color:var(--gray-600)}
+  .cal-legend-dot{width:10px;height:10px;border-radius:2px}
+  .toast{position:fixed;top:72px;left:50%;transform:translateX(-50%);background:var(--olive-dark);color:white;padding:10px 18px;border-radius:10px;font-size:13px;font-weight:600;z-index:500;opacity:0;transition:opacity .3s;pointer-events:none;white-space:nowrap}
+  .toast.show{opacity:1}
 </style>
 </head>
 <body>
 <div class="header">
-  <div><div class="header-title">🌿 GestiónVerde</div><div class="header-sub">Panel operativo</div></div>
+  <img class="header-logo" src="https://cireneos.org/wp-content/uploads/2024/02/logo_horizontal_blanco.png" alt="Cireneos">
+  <button class="notif-btn" id="notif-btn" onclick="toggleNotif()">🔔 Activar alertas</button>
 </div>
 <nav class="nav">
   <button class="nav-btn active" onclick="showTab('dashboard')">📊 Inicio</button>
+  <button class="nav-btn" onclick="showTab('calendario')">📅 Calendario</button>
   <button class="nav-btn" onclick="showTab('tareas')">✅ Tareas</button>
   <button class="nav-btn" onclick="showTab('clientes')">👤 Clientes</button>
   <button class="nav-btn" onclick="showTab('equipo')">👷 Equipo</button>
 </nav>
 <div class="content" id="main-content"><div class="loading"><div class="spinner"></div>Cargando...</div></div>
-<button class="fab" onclick="openFab()">＋</button>
-<div class="modal-overlay" id="modal-overlay" onclick="closeModal(event)">
-  <div class="modal" id="modal-content"></div>
-</div>
+<button class="fab" id="fab" onclick="openFab()">＋</button>
+<div class="modal-overlay" id="modal-overlay" onclick="closeModal(event)"><div class="modal" id="modal-content"></div></div>
+<div class="toast" id="toast"></div>
 <script>
 const SB='https://hpcyhqxzdxrhnbquekqz.supabase.co',KEY='sb_publishable_w-IClSpBRLKhWEFBXhqKfg_kpZI1SSK';
-let tab='dashboard',CL=[],US=[],SV=[],TA=[],RO=[];
-
-async function api(p,m='GET',b=null){
-  const o={method:m,headers:{'apikey':KEY,'Authorization':'Bearer '+KEY,'Content-Type':'application/json','Prefer':m==='POST'?'return=representation':''}};
-  if(b)o.body=JSON.stringify(b);
-  const r=await fetch(SB+'/rest/v1/'+p,o);
-  if(!r.ok){const e=await r.text();throw new Error(e);}
-  if(r.status===204)return[];
-  return r.json();
-}
-
-async function load(){
-  try{
-    [CL,US,SV,TA,RO]=await Promise.all([
-      api('clientes?select=*,usuarios(nombre)&order=creado_en.desc'),
-      api('usuarios?select=*,roles(nombre)&order=nombre'),
-      api('servicios?select=*'),
-      api('tareas?select=*,clientes(nombre),usuarios(nombre),servicios(nombre)&order=fecha_programada.asc'),
-      api('roles?select=*')
-    ]);
-  }catch(e){console.error(e);}
-}
-
-function showTab(t){
-  tab=t;
-  document.querySelectorAll('.nav-btn').forEach((b,i)=>b.classList.toggle('active',['dashboard','tareas','clientes','equipo'][i]===t));
-  render();
-}
-
-function render(){
-  const el=document.getElementById('main-content');
-  if(tab==='dashboard')el.innerHTML=rDash();
-  if(tab==='tareas')el.innerHTML=rTareas();
-  if(tab==='clientes')el.innerHTML=rClientes();
-  if(tab==='equipo')el.innerHTML=rEquipo();
-}
-
-function rDash(){
-  const p=TA.filter(t=>t.estado==='Pendiente').length;
-  const d=TA.filter(t=>t.estado==='Completado').length;
-  const hoy=new Date().toISOString().split('T')[0];
-  const hT=TA.filter(t=>t.fecha_programada===hoy);
-  const ip=TA.filter(t=>t.estado==='En progreso');
-  return '<div class="stats-grid">'+
-    '<div class="stat-card"><div class="stat-num">'+CL.length+'</div><div class="stat-label">Clientes</div></div>'+
-    '<div class="stat-card"><div class="stat-num">'+TA.length+'</div><div class="stat-label">Tareas</div></div>'+
-    '<div class="stat-card"><div class="stat-num" style="color:var(--warning)">'+p+'</div><div class="stat-label">Pendientes</div></div>'+
-    '<div class="stat-card"><div class="stat-num" style="color:var(--green-mid)">'+d+'</div><div class="stat-label">Completadas</div></div>'+
-    '</div><div class="section-title">Tareas de hoy</div>'+
-    (hT.length===0?'<div class="empty"><div class="empty-icon">☀️</div><div class="empty-text">No hay tareas para hoy</div></div>':hT.map(tI).join(''))+
-    (ip.length>0?'<div class="section-title" style="margin-top:16px">🔄 En progreso</div>'+ip.map(tI).join(''):'');
-}
-
-function tI(t){
-  return '<div class="task-item">'+
-    '<div class="task-check '+(t.estado==='Completado'?'done':'')+'" onclick="tog(\''+t.id+'\',\''+t.estado+'\')">'+(t.estado==='Completado'?'✓':'')+'</div>'+
-    '<div class="task-info">'+
-      '<div class="task-title">'+t.titulo+'</div>'+
-      '<div class="task-meta">'+(t.clientes?.nombre||'—')+' · '+(t.usuarios?.nombre||'Sin asignar')+(t.hora_inicio?' · '+t.hora_inicio.slice(0,5):'')+'</div>'+
-      '<span class="badge '+(t.estado==='Pendiente'?'badge-pending':t.estado==='En progreso'?'badge-progress':'badge-done')+'">'+t.estado+'</span>'+
-    '</div>'+
-    '<button class="btn btn-sm btn-secondary" onclick="edT(\''+t.id+'\')">✏️</button>'+
-  '</div>';
-}
-
-function rTareas(){
-  return '<div class="section-title">Tareas ('+TA.length+')</div>'+
-    (TA.length===0?'<div class="empty"><div class="empty-icon">✅</div><div class="empty-text">No hay tareas.<br>Tocá + para crear.</div></div>':TA.map(tI).join(''));
-}
-
-function tpI(t){return t==='empresa'?'🏢':t==='barrio'?'🏘️':'👤';}
-function tpL(t){return t==='empresa'?'Empresa':t==='barrio'?'Barrio/Consorcio':'Persona física';}
-
-function rClientes(){
-  return '<div class="section-title">Clientes ('+CL.length+')</div>'+
-    (CL.length===0?'<div class="empty"><div class="empty-icon">👤</div><div class="empty-text">No hay clientes.<br>Tocá + para agregar.</div></div>':
-    CL.map(c=>{
-      const tp=c.tipo_cliente||'persona';
-      const ct=c.contacto_nombre?
-        '<div class="contact-card">'+
-          '<div class="contact-row">👤 <b>'+c.contacto_nombre+'</b>'+(c.contacto_cargo?' — '+c.contacto_cargo:'')+'</div>'+
-          (c.contacto_telefono?'<div class="contact-row">📞 '+c.contacto_telefono+'</div>':'')+
-          (c.contacto_email?'<div class="contact-row">✉️ '+c.contacto_email+'</div>':'')+
-        '</div>':'';
-      return '<div class="card">'+
-        '<div class="card-header">'+
-          '<div><div class="card-title">'+tpI(tp)+' '+c.nombre+'</div><div class="card-sub">'+(c.direccion||'Sin dirección')+'</div></div>'+
-          '<div style="display:flex;flex-direction:column;align-items:flex-end;gap:4px">'+
-            '<span class="badge '+(c.estado==='Activo'?'badge-active':'badge-paused')+'">'+(c.estado||'Activo')+'</span>'+
-            '<span class="badge badge-type">'+tpL(tp)+'</span>'+
-          '</div>'+
-        '</div>'+
-        (tp==='persona'?'<div class="card-body">'+(c.telefono?'📞 '+c.telefono:'')+(c.email?' · ✉️ '+c.email:'')+'</div>':ct)+
-        '<div style="margin-top:10px;display:flex;gap:8px">'+
-          '<button class="btn btn-sm btn-secondary" onclick="edC(\''+c.id+'\')">✏️ Editar</button>'+
-          '<button class="btn btn-sm btn-primary" onclick="nTC(\''+c.id+'\')">+ Tarea</button>'+
-        '</div></div>';
-    }).join(''));
-}
-
-function rEquipo(){
-  return '<div class="section-title">Equipo ('+US.length+')</div>'+
-    (US.length===0?'<div class="empty"><div class="empty-icon">👷</div><div class="empty-text">No hay equipo.<br>Tocá + para agregar.</div></div>':
-    US.map(u=>
-      '<div class="card">'+
-        '<div class="card-header">'+
-          '<div><div class="card-title">'+u.nombre+'</div><div class="card-sub">'+(u.roles?.nombre||'Sin rol')+(u.celula?' · Célula: '+u.celula:'')+'</div></div>'+
-          '<div style="display:flex;gap:6px;align-items:center">'+
-            '<span class="badge '+(u.activo?'badge-active':'badge-paused')+'">'+(u.activo?'Activo':'Inactivo')+'</span>'+
-            '<button class="btn btn-sm btn-secondary" onclick="edU(\''+u.id+'\')">✏️</button>'+
-          '</div>'+
-        '</div>'+
-        (u.telefono||u.email?'<div class="card-body">'+(u.telefono?'📞 '+u.telefono:'')+(u.email?' · ✉️ '+u.email:'')+'</div>':'')+
-      '</div>'
-    ).join(''));
-}
-
-function openFab(){
-  if(tab==='tareas'||tab==='dashboard')mT();
-  else if(tab==='clientes')mC();
-  else if(tab==='equipo')mU();
-}
+let tab='dashboard',CL=[],US=[],SV=[],TA=[],RO=[],calOff=0,notifOn=false;
+async function api(p,m='GET',b=null){const o={method:m,headers:{'apikey':KEY,'Authorization':'Bearer '+KEY,'Content-Type':'application/json','Prefer':m==='POST'?'return=representation':''}};if(b)o.body=JSON.stringify(b);const r=await fetch(SB+'/rest/v1/'+p,o);if(!r.ok)throw new Error(await r.text());if(r.status===204)return[];return r.json();}
+async function load(){try{[CL,US,SV,TA,RO]=await Promise.all([api('clientes?select=*,usuarios(nombre)&order=creado_en.desc'),api('usuarios?select=*,roles(nombre)&order=nombre'),api('servicios?select=*'),api('tareas?select=*,clientes(nombre),usuarios(nombre),servicios(nombre)&order=fecha_programada.asc,hora_inicio.asc'),api('roles?select=*')]);}catch(e){console.error(e);}}
+async function toggleNotif(){if(notifOn){notifOn=false;updNB();toast('Alertas desactivadas');return;}if(!('Notification'in window)){toast('No soportado');return;}const p=await Notification.requestPermission();if(p==='granted'){notifOn=true;updNB();toast('Alertas activadas');new Notification('Cireneos',{body:'Alertas activas',icon:'https://cireneos.org/wp-content/uploads/2024/02/logo_horizontal_blanco.png'});}else toast('Permiso denegado');}
+function updNB(){const b=document.getElementById('notif-btn');if(b){b.textContent=notifOn?'🔔 ON':'🔔 Activar alertas';b.classList.toggle('on',notifOn);}}
+function notif(t,b){if(!notifOn||Notification.permission!=='granted')return;new Notification(t,{body:b,icon:'https://cireneos.org/wp-content/uploads/2024/02/logo_horizontal_blanco.png'});}
+function toast(msg){const t=document.getElementById('toast');t.textContent=msg;t.classList.add('show');setTimeout(()=>t.classList.remove('show'),3000);}
+function showTab(t){tab=t;document.querySelectorAll('.nav-btn').forEach((b,i)=>b.classList.toggle('active',['dashboard','calendario','tareas','clientes','equipo'][i]===t));document.getElementById('fab').style.display=t==='calendario'?'none':'flex';render();}
+function render(){const el=document.getElementById('main-content');el.innerHTML=tab==='dashboard'?rDash():tab==='calendario'?rCal():tab==='tareas'?rTareas():tab==='clientes'?rClientes():rEquipo();if(tab==='calendario')setTimeout(drawCal,0);}
+function rDash(){const p=TA.filter(t=>t.estado==='Pendiente').length,d=TA.filter(t=>t.estado==='Completado').length,hoy=new Date().toISOString().split('T')[0],hT=TA.filter(t=>t.fecha_programada===hoy),ip=TA.filter(t=>t.estado==='En progreso');return '<div class="stats-grid"><div class="stat-card"><div class="stat-num">'+CL.length+'</div><div class="stat-label">Clientes</div></div><div class="stat-card"><div class="stat-num">'+TA.length+'</div><div class="stat-label">Tareas</div></div><div class="stat-card"><div class="stat-num" style="color:var(--warning)">'+p+'</div><div class="stat-label">Pendientes</div></div><div class="stat-card"><div class="stat-num">'+d+'</div><div class="stat-label">Completadas</div></div></div><div class="section-title">Tareas de hoy</div>'+(hT.length===0?'<div class="empty"><div class="empty-icon">☀️</div><div class="empty-text">No hay tareas para hoy</div></div>':hT.map(tI).join(''))+(ip.length>0?'<div class="section-title" style="margin-top:16px">🔄 En progreso</div>'+ip.map(tI).join(''):'');}
+function tI(t){return '<div class="task-item"><div class="task-check '+(t.estado==='Completado'?'done':'')+'" onclick="tog(''+t.id+'',''+t.estado+'')">'+(t.estado==='Completado'?'✓':'')+'</div><div class="task-info"><div class="task-title">'+t.titulo+'</div><div class="task-meta">'+(t.clientes?.nombre||'—')+' · '+(t.usuarios?.nombre||'Sin asignar')+(t.hora_inicio?' · '+t.hora_inicio.slice(0,5):'')+(t.duracion_hs?' · '+t.duracion_hs+'hs':'')+'</div><span class="badge '+(t.estado==='Pendiente'?'badge-pending':t.estado==='En progreso'?'badge-progress':'badge-done')+'">'+t.estado+'</span></div><button class="btn btn-sm btn-secondary" onclick="edT(''+t.id+'')">✏️</button></div>';}
+const DAYS=['Dom','Lun','Mar','Mié','Jue','Vie','Sáb'],MONTHS=['Ene','Feb','Mar','Abr','May','Jun','Jul','Ago','Sep','Oct','Nov','Dic'];
+function weekDates(off){const n=new Date(),day=n.getDay(),mon=new Date(n);mon.setDate(n.getDate()-(day===0?6:day-1)+(off*7));return Array.from({length:7},(_,i)=>{const d=new Date(mon);d.setDate(mon.getDate()+i);return d;});}
+function fd(d){return d.toISOString().split('T')[0];}
+function rCal(){const dates=weekDates(calOff),today=fd(new Date()),HOURS=Array.from({length:13},(_,i)=>i+7);const r1=dates[0].getDate()+' – '+dates[6].getDate()+' '+MONTHS[dates[6].getMonth()]+' '+dates[6].getFullYear();let h='<div class="cal-nav"><button class="cal-nav-btn" onclick="calOff--;render()">‹</button><div class="cal-nav-title">'+r1+'</div><button class="cal-nav-btn" onclick="calOff++;render()">›</button></div><div class="cal-wrapper"><div class="cal-header"><div class="cal-hcell"></div>'+dates.map(d=>{const isT=fd(d)===today;return '<div class="cal-hcell"><div class="cal-day-label"><div class="cal-day-name">'+DAYS[d.getDay()]+'</div><div class="cal-day-num'+(isT?' today-circle':'')+'">'+d.getDate()+'</div></div></div>';}).join('')+'</div><div class="cal-scroll"><div class="cal-body" id="cal-body">';HOURS.forEach(h2=>{h+='<div class="cal-time">'+(h2<10?'0':'')+h2+'h</div>';dates.forEach((_,di)=>h+='<div class="cal-cell" id="cc-'+di+'-'+h2+'"></div>');});h+='</div></div></div>';h+='<div class="cal-legend"><div class="cal-legend-item"><div class="cal-legend-dot" style="background:#fff3cd;border-left:2px solid #e6ac00"></div>Pendiente</div><div class="cal-legend-item"><div class="cal-legend-dot" style="background:#cfe2ff;border-left:2px solid #2980b9"></div>En progreso</div><div class="cal-legend-item"><div class="cal-legend-dot" style="background:var(--olive-pale);border-left:2px solid var(--olive-light)"></div>Completado</div></div>';return h;}
+function drawCal(){const dates=weekDates(calOff),today=fd(new Date()),SLOT=52,START=7;const tidx=dates.findIndex(d=>fd(d)===today);if(tidx>=0){const now=new Date(),top=((now.getHours()-START)*60+now.getMinutes())/60*SLOT;const fc=document.getElementById('cc-'+tidx+'-'+START);if(fc){const line=document.createElement('div');line.className='cal-now';line.style.cssText='position:absolute;top:'+top+'px;left:0;right:0;';const p=fc.parentElement;if(p){p.style.position='relative';p.appendChild(line);}}}TA.forEach(t=>{if(!t.fecha_programada||!t.hora_inicio)return;const di=dates.findIndex(d=>fd(d)===t.fecha_programada);if(di<0)return;const [hh,mm]=t.hora_inicio.split(':').map(Number),dur=parseFloat(t.duracion_hs)||1,top=((hh-START)*60+mm)/60*SLOT,ht=Math.max(18,dur*SLOT),sh=Math.min(19,Math.max(START,hh)),cell=document.getElementById('cc-'+di+'-'+sh);if(!cell)return;const offset=top-((sh-START)*SLOT),cls=t.estado==='Completado'?'ev-done':t.estado==='En progreso'?'ev-progress':'ev-pending',el=document.createElement('div');el.className='cal-event '+cls;el.style.cssText='top:'+offset+'px;height:'+ht+'px;';el.innerHTML='<div style="overflow:hidden;text-overflow:ellipsis;white-space:nowrap">'+t.titulo+'</div>'+(t.usuarios?.nombre?'<div style="opacity:.8;font-weight:400;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">'+t.usuarios.nombre+'</div>':'');el.onclick=()=>edT(t.id);cell.appendChild(el);});}
+function rTareas(){return '<div class="section-title">Tareas ('+TA.length+')</div>'+(TA.length===0?'<div class="empty"><div class="empty-icon">✅</div><div class="empty-text">No hay tareas.</div></div>':TA.map(tI).join(''));}
+function tpI(t){return t==='empresa'?'🏢':t==='barrio'?'🏘️':'👤';}function tpL(t){return t==='empresa'?'Empresa':t==='barrio'?'Barrio/Consorcio':'Persona física';}
+function rClientes(){return '<div class="section-title">Clientes ('+CL.length+')</div>'+(CL.length===0?'<div class="empty"><div class="empty-icon">👤</div><div class="empty-text">No hay clientes.</div></div>':CL.map(c=>{const tp=c.tipo_cliente||'persona',ct=c.contacto_nombre?'<div class="contact-card"><div class="contact-row">👤 <b>'+c.contacto_nombre+'</b>'+(c.contacto_cargo?' — '+c.contacto_cargo:'')+'</div>'+(c.contacto_telefono?'<div class="contact-row">📞 '+c.contacto_telefono+'</div>':'')+(c.contacto_email?'<div class="contact-row">✉️ '+c.contacto_email+'</div>':'')+'</div>':'';return '<div class="card"><div class="card-header"><div><div class="card-title">'+tpI(tp)+' '+c.nombre+'</div><div class="card-sub">'+(c.direccion||'Sin dirección')+'</div></div><div style="display:flex;flex-direction:column;align-items:flex-end;gap:4px"><span class="badge '+(c.estado==='Activo'?'badge-active':'badge-paused')+'">'+(c.estado||'Activo')+'</span><span class="badge badge-type">'+tpL(tp)+'</span></div></div>'+(tp==='persona'?'<div class="card-body">'+(c.telefono?'📞 '+c.telefono:'')+(c.email?' · ✉️ '+c.email:'')+'</div>':ct)+'<div style="margin-top:10px;display:flex;gap:8px"><button class="btn btn-sm btn-secondary" onclick="edC(''+c.id+'')">✏️ Editar</button><button class="btn btn-sm btn-primary" onclick="nTC(''+c.id+'')">+ Tarea</button></div></div>';}).join(''));}
+function rEquipo(){return '<div class="section-title">Equipo ('+US.length+')</div>'+(US.length===0?'<div class="empty"><div class="empty-icon">👷</div><div class="empty-text">No hay equipo.</div></div>':US.map(u=>'<div class="card"><div class="card-header"><div><div class="card-title">'+u.nombre+'</div><div class="card-sub">'+(u.roles?.nombre||'Sin rol')+(u.celula?' · Célula: '+u.celula:'')+'</div></div><div style="display:flex;gap:6px;align-items:center"><span class="badge '+(u.activo?'badge-active':'badge-paused')+'">'+(u.activo?'Activo':'Inactivo')+'</span><button class="btn btn-sm btn-secondary" onclick="edU(''+u.id+'')">✏️</button></div></div>'+(u.telefono||u.email?'<div class="card-body">'+(u.telefono?'📞 '+u.telefono:'')+(u.email?' · ✉️ '+u.email:'')+'</div>':'')+'</div>').join(''));}
+function openFab(){if(tab==='tareas'||tab==='dashboard')mT();else if(tab==='clientes')mC();else if(tab==='equipo')mU();}
 function openM(h){document.getElementById('modal-content').innerHTML=h;document.getElementById('modal-overlay').classList.add('open');}
 function closeModal(e){if(!e||e.target===document.getElementById('modal-overlay'))document.getElementById('modal-overlay').classList.remove('open');}
-
-function selTp(t){
-  document.querySelectorAll('.type-btn').forEach(b=>b.classList.remove('selected'));
-  document.getElementById('tp-'+t).classList.add('selected');
-  document.getElementById('fp').classList.toggle('hidden',t!=='persona');
-  document.getElementById('fe').classList.toggle('hidden',t!=='empresa');
-  document.getElementById('fb').classList.toggle('hidden',t!=='barrio');
-  document.getElementById('htp').value=t;
-}
-
-function tpSel(s){s=s||'persona';return '<input type="hidden" id="htp" value="'+s+'"><div class="type-selector">'+
-  '<button type="button" class="type-btn '+(s==='persona'?'selected':'')+'" id="tp-persona" onclick="selTp(\'persona\')"><span class="type-icon">👤</span>Persona</button>'+
-  '<button type="button" class="type-btn '+(s==='empresa'?'selected':'')+'" id="tp-empresa" onclick="selTp(\'empresa\')"><span class="type-icon">🏢</span>Empresa</button>'+
-  '<button type="button" class="type-btn '+(s==='barrio'?'selected':'')+'" id="tp-barrio" onclick="selTp(\'barrio\')"><span class="type-icon">🏘️</span>Barrio</button>'+
-'</div>';}
-
-function fP(c){c=c||{};return '<div id="fp"><div class="form-row">'+
-  '<div class="form-group"><label class="form-label">Teléfono</label><input class="form-control" id="f-tel" type="tel" value="'+(c.telefono||'')+'"></div>'+
-  '<div class="form-group"><label class="form-label">Email</label><input class="form-control" id="f-email" type="email" value="'+(c.email||'')+'"></div>'+
-'</div></div>';}
-
-function fE(c){c=c||{};return '<div id="fe"><div class="section-divider">Contacto en la empresa</div>'+
-  '<div class="form-group"><label class="form-label">Nombre del contacto</label><input class="form-control" id="f-cn" value="'+(c.contacto_nombre||'')+'"></div>'+
-  '<div class="form-group"><label class="form-label">Cargo</label><input class="form-control" id="f-cc" value="'+(c.contacto_cargo||'')+'"></div>'+
-  '<div class="form-row">'+
-    '<div class="form-group"><label class="form-label">Teléfono</label><input class="form-control" id="f-ct" type="tel" value="'+(c.contacto_telefono||'')+'"></div>'+
-    '<div class="form-group"><label class="form-label">Email</label><input class="form-control" id="f-ce" type="email" value="'+(c.contacto_email||'')+'"></div>'+
-  '</div></div>';}
-
-function fB(c){c=c||{};return '<div id="fb"><div class="section-divider">Datos del administrador</div>'+
-  '<div class="form-group"><label class="form-label">Nombre del administrador</label><input class="form-control" id="f-cn" value="'+(c.contacto_nombre||'')+'"></div>'+
-  '<div class="form-row">'+
-    '<div class="form-group"><label class="form-label">Teléfono</label><input class="form-control" id="f-ct" type="tel" value="'+(c.contacto_telefono||'')+'"></div>'+
-    '<div class="form-group"><label class="form-label">Email</label><input class="form-control" id="f-ce" type="email" value="'+(c.contacto_email||'')+'"></div>'+
-  '</div>'+
-  '<div class="form-group"><label class="form-label">Dir. administración</label><input class="form-control" id="f-da" value="'+(c.dir_administracion||'')+'"></div>'+
-'</div>';}
-
-function mC(c){
-  var ie=!!c,tp=(c&&c.tipo_cliente)||'persona';
-  var uo=US.map(u=>'<option value="'+u.id+'"'+(c&&c.responsable_id===u.id?' selected':'')+'>'+u.nombre+'</option>').join('');
-  openM(
-    '<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:18px">'+
-      '<div class="modal-title" style="margin:0">'+(ie?'Editar':'Nuevo')+' cliente</div>'+
-      '<button class="modal-close" onclick="closeModal()">✕</button>'+
-    '</div>'+
-    '<div class="form-group"><label class="form-label">Nombre / Razón social *</label><input class="form-control" id="f-nom" value="'+(c?c.nombre:'')+'"></div>'+
-    '<div class="form-group"><label class="form-label">Tipo de cliente</label>'+tpSel(tp)+'</div>'+
-    fP(c)+fE(c)+fB(c)+
-    '<div class="form-group"><label class="form-label">Dirección del servicio</label><input class="form-control" id="f-dir" value="'+(c?c.direccion||'':'')+'"></div>'+
-    '<div class="form-group"><label class="form-label">Responsable interno</label><select class="form-control" id="f-resp"><option value="">Sin asignar</option>'+uo+'</select></div>'+
-    '<div class="form-group"><label class="form-label">Estado</label><select class="form-control" id="f-est">'+
-      '<option'+((!c||c.estado==='Activo')?' selected':'')+'>Activo</option>'+
-      '<option'+(c&&c.estado==='Prospecto'?' selected':'')+'>Prospecto</option>'+
-      '<option'+(c&&c.estado==='Pausado'?' selected':'')+'>Pausado</option>'+
-      '<option'+(c&&c.estado==='Baja'?' selected':'')+'>Baja</option>'+
-    '</select></div>'+
-    '<div class="form-group"><label class="form-label">Notas</label><textarea class="form-control" id="f-not" rows="2">'+(c?c.notas||'':'')+'</textarea></div>'+
-    '<div class="form-actions">'+
-      (ie?'<button class="btn btn-danger" onclick="delC(\''+c.id+'\')">🗑</button>':'')+
-      '<button class="btn btn-secondary" onclick="closeModal()">Cancelar</button>'+
-      '<button class="btn btn-primary" onclick="'+(ie?'upC(\''+c.id+'\')':'svC()')+'">Guardar</button>'+
-    '</div>'
-  );
-  selTp(tp);
-}
-function edC(id){var c=CL.find(x=>x.id===id);if(c)mC(c);}
-
-function mU(u){
-  var ie=!!u;
-  var ro=RO.map(r=>'<option value="'+r.id+'"'+(u&&u.rol_id===r.id?' selected':'')+'>'+r.nombre+'</option>').join('');
-  openM(
-    '<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:18px">'+
-      '<div class="modal-title" style="margin:0">'+(ie?'Editar':'Nuevo')+' integrante</div>'+
-      '<button class="modal-close" onclick="closeModal()">✕</button>'+
-    '</div>'+
-    '<div class="form-group"><label class="form-label">Nombre *</label><input class="form-control" id="f-nom" value="'+(u?u.nombre:'')+'"></div>'+
-    '<div class="form-group"><label class="form-label">Rol</label><select class="form-control" id="f-rol">'+ro+'</select></div>'+
-    '<div class="form-group"><label class="form-label">Célula</label><input class="form-control" id="f-cel" value="'+(u?u.celula||'':'')+'"></div>'+
-    '<div class="form-row">'+
-      '<div class="form-group"><label class="form-label">Teléfono</label><input class="form-control" id="f-tel" type="tel" value="'+(u?u.telefono||'':'')+'"></div>'+
-      '<div class="form-group"><label class="form-label">Email</label><input class="form-control" id="f-email" type="email" value="'+(u?u.email||'':'')+'"></div>'+
-    '</div>'+
-    (ie?'<div class="form-group"><label class="form-label">Estado</label><select class="form-control" id="f-act">'+
-      '<option value="true"'+(u&&u.activo!==false?' selected':'')+'>Activo</option>'+
-      '<option value="false"'+(u&&u.activo===false?' selected':'')+'>Inactivo</option>'+
-    '</select></div>':'')+
-    '<div class="form-actions">'+
-      (ie?'<button class="btn btn-danger" onclick="delU(\''+u.id+'\')">🗑</button>':'')+
-      '<button class="btn btn-secondary" onclick="closeModal()">Cancelar</button>'+
-      '<button class="btn btn-primary" onclick="'+(ie?'upU(\''+u.id+'\')':'svU()')+'">Guardar</button>'+
-    '</div>'
-  );
-}
-function edU(id){var u=US.find(x=>x.id===id);if(u)mU(u);}
-
-function mT(cid){
-  cid=cid||'';
-  var co=CL.map(c=>'<option value="'+c.id+'"'+(c.id===cid?' selected':'')+'>'+c.nombre+'</option>').join('');
-  var uo=US.map(u=>'<option value="'+u.id+'">'+u.nombre+'</option>').join('');
-  var so=SV.map(s=>'<option value="'+s.id+'">'+s.nombre+'</option>').join('');
-  openM(
-    '<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:18px">'+
-      '<div class="modal-title" style="margin:0">Nueva tarea</div>'+
-      '<button class="modal-close" onclick="closeModal()">✕</button>'+
-    '</div>'+
-    '<div class="form-group"><label class="form-label">Título *</label><input class="form-control" id="f-tit"></div>'+
-    '<div class="form-group"><label class="form-label">Cliente</label><select class="form-control" id="f-cli"><option value="">Sin cliente</option>'+co+'</select></div>'+
-    '<div class="form-group"><label class="form-label">Servicio</label><select class="form-control" id="f-srv"><option value="">Seleccionar...</option>'+so+'</select></div>'+
-    '<div class="form-group"><label class="form-label">Asignar a</label><select class="form-control" id="f-asi"><option value="">Sin asignar</option>'+uo+'</select></div>'+
-    '<div class="form-row">'+
-      '<div class="form-group"><label class="form-label">Fecha</label><input class="form-control" id="f-fec" type="date" value="'+new Date().toISOString().split('T')[0]+'"></div>'+
-      '<div class="form-group"><label class="form-label">Hora</label><input class="form-control" id="f-hor" type="time"></div>'+
-    '</div>'+
-    '<div class="form-group"><label class="form-label">Observaciones</label><textarea class="form-control" id="f-obs" rows="2"></textarea></div>'+
-    '<div class="form-actions"><button class="btn btn-secondary" onclick="closeModal()">Cancelar</button><button class="btn btn-primary" onclick="svT()">Guardar</button></div>'
-  );
-}
-
-function edT(id){
-  var t=TA.find(x=>x.id===id);if(!t)return;
-  var co=CL.map(c=>'<option value="'+c.id+'"'+(c.id===t.cliente_id?' selected':'')+'>'+c.nombre+'</option>').join('');
-  var uo=US.map(u=>'<option value="'+u.id+'"'+(u.id===t.asignado_a?' selected':'')+'>'+u.nombre+'</option>').join('');
-  openM(
-    '<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:18px">'+
-      '<div class="modal-title" style="margin:0">Editar tarea</div>'+
-      '<button class="modal-close" onclick="closeModal()">✕</button>'+
-    '</div>'+
-    '<div class="form-group"><label class="form-label">Título</label><input class="form-control" id="f-tit" value="'+t.titulo+'"></div>'+
-    '<div class="form-group"><label class="form-label">Cliente</label><select class="form-control" id="f-cli"><option value="">Sin cliente</option>'+co+'</select></div>'+
-    '<div class="form-group"><label class="form-label">Asignar a</label><select class="form-control" id="f-asi"><option value="">Sin asignar</option>'+uo+'</select></div>'+
-    '<div class="form-row">'+
-      '<div class="form-group"><label class="form-label">Fecha</label><input class="form-control" id="f-fec" type="date" value="'+(t.fecha_programada||'')+'"></div>'+
-      '<div class="form-group"><label class="form-label">Estado</label><select class="form-control" id="f-est">'+
-        '<option'+(t.estado==='Pendiente'?' selected':'')+'>Pendiente</option>'+
-        '<option'+(t.estado==='En progreso'?' selected':'')+'>En progreso</option>'+
-        '<option'+(t.estado==='Completado'?' selected':'')+'>Completado</option>'+
-      '</select></div>'+
-    '</div>'+
-    '<div class="form-group"><label class="form-label">Observaciones</label><textarea class="form-control" id="f-obs" rows="2">'+(t.observaciones||'')+'</textarea></div>'+
-    '<div class="form-actions">'+
-      '<button class="btn btn-danger" onclick="delT(\''+id+'\')">🗑 Eliminar</button>'+
-      '<button class="btn btn-primary" onclick="upT(\''+id+'\')">Guardar</button>'+
-    '</div>'
-  );
-}
+function selTp(t){document.querySelectorAll('.type-btn').forEach(b=>b.classList.remove('selected'));document.getElementById('tp-'+t).classList.add('selected');['fp','fe','fb'].forEach(id=>{const el=document.getElementById(id);if(el)el.classList.add('hidden');});const show=document.getElementById('f'+t[0]);if(show)show.classList.remove('hidden');document.getElementById('htp').value=t;}
+function tpSel(s){s=s||'persona';return '<input type="hidden" id="htp" value="'+s+'"><div class="type-selector"><button type="button" class="type-btn '+(s==='persona'?'selected':'')+'" id="tp-persona" onclick="selTp('persona')"><span class="type-icon">👤</span>Persona</button><button type="button" class="type-btn '+(s==='empresa'?'selected':'')+'" id="tp-empresa" onclick="selTp('empresa')"><span class="type-icon">🏢</span>Empresa</button><button type="button" class="type-btn '+(s==='barrio'?'selected':'')+'" id="tp-barrio" onclick="selTp('barrio')"><span class="type-icon">🏘️</span>Barrio</button></div>';}
+function fP(c){c=c||{};return '<div id="fp"><div class="form-row"><div class="form-group"><label class="form-label">Teléfono</label><input class="form-control" id="f-tel" type="tel" value="'+(c.telefono||'')+'"></div><div class="form-group"><label class="form-label">Email</label><input class="form-control" id="f-email" type="email" value="'+(c.email||'')+'"></div></div></div>';}
+function fE(c){c=c||{};return '<div id="fe"><div class="section-divider">Contacto en la empresa</div><div class="form-group"><label class="form-label">Nombre contacto</label><input class="form-control" id="f-cn" value="'+(c.contacto_nombre||'')+'"></div><div class="form-group"><label class="form-label">Cargo</label><input class="form-control" id="f-cc" value="'+(c.contacto_cargo||'')+'"></div><div class="form-row"><div class="form-group"><label class="form-label">Teléfono</label><input class="form-control" id="f-ct" type="tel" value="'+(c.contacto_telefono||'')+'"></div><div class="form-group"><label class="form-label">Email</label><input class="form-control" id="f-ce" type="email" value="'+(c.contacto_email||'')+'"></div></div></div>';}
+function fB(c){c=c||{};return '<div id="fb"><div class="section-divider">Datos del administrador</div><div class="form-group"><label class="form-label">Nombre administrador</label><input class="form-control" id="f-cn" value="'+(c.contacto_nombre||'')+'"></div><div class="form-row"><div class="form-group"><label class="form-label">Teléfono</label><input class="form-control" id="f-ct" type="tel" value="'+(c.contacto_telefono||'')+'"></div><div class="form-group"><label class="form-label">Email</label><input class="form-control" id="f-ce" type="email" value="'+(c.contacto_email||'')+'"></div></div><div class="form-group"><label class="form-label">Dir. administración</label><input class="form-control" id="f-da" value="'+(c.dir_administracion||'')+'"></div></div>';}
+function mT(cid){cid=cid||'';const co=CL.map(c=>'<option value="'+c.id+'"'+(c.id===cid?' selected':'')+'>'+c.nombre+'</option>').join(''),uo=US.map(u=>'<option value="'+u.id+'">'+u.nombre+'</option>').join(''),so=SV.map(s=>'<option value="'+s.id+'">'+s.nombre+'</option>').join('');openM('<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:18px"><div class="modal-title" style="margin:0">Nueva tarea</div><button class="modal-close" onclick="closeModal()">✕</button></div><div class="form-group"><label class="form-label">Título *</label><input class="form-control" id="f-tit"></div><div class="form-group"><label class="form-label">Cliente</label><select class="form-control" id="f-cli"><option value="">Sin cliente</option>'+co+'</select></div><div class="form-group"><label class="form-label">Servicio</label><select class="form-control" id="f-srv"><option value="">Seleccionar...</option>'+so+'</select></div><div class="form-group"><label class="form-label">Asignar a</label><select class="form-control" id="f-asi"><option value="">Sin asignar</option>'+uo+'</select></div><div class="form-row"><div class="form-group"><label class="form-label">Fecha</label><input class="form-control" id="f-fec" type="date" value="'+new Date().toISOString().split('T')[0]+'"></div><div class="form-group"><label class="form-label">Hora inicio</label><input class="form-control" id="f-hor" type="time"></div></div><div class="form-group"><label class="form-label">Duración estimada (hs)</label><input class="form-control" id="f-dur" type="number" min="0.5" max="12" step="0.5" placeholder="Ej: 1.5"></div><div class="form-group"><label class="form-label">Observaciones</label><textarea class="form-control" id="f-obs" rows="2"></textarea></div><div class="form-actions"><button class="btn btn-secondary" onclick="closeModal()">Cancelar</button><button class="btn btn-primary" onclick="svT()">Guardar</button></div>');}
+function edT(id){const t=TA.find(x=>x.id===id);if(!t)return;const co=CL.map(c=>'<option value="'+c.id+'"'+(c.id===t.cliente_id?' selected':'')+'>'+c.nombre+'</option>').join(''),uo=US.map(u=>'<option value="'+u.id+'"'+(u.id===t.asignado_a?' selected':'')+'>'+u.nombre+'</option>').join('');openM('<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:18px"><div class="modal-title" style="margin:0">Editar tarea</div><button class="modal-close" onclick="closeModal()">✕</button></div><div class="form-group"><label class="form-label">Título</label><input class="form-control" id="f-tit" value="'+t.titulo+'"></div><div class="form-group"><label class="form-label">Cliente</label><select class="form-control" id="f-cli"><option value="">Sin cliente</option>'+co+'</select></div><div class="form-group"><label class="form-label">Asignar a</label><select class="form-control" id="f-asi"><option value="">Sin asignar</option>'+uo+'</select></div><div class="form-row"><div class="form-group"><label class="form-label">Fecha</label><input class="form-control" id="f-fec" type="date" value="'+(t.fecha_programada||'')+'"></div><div class="form-group"><label class="form-label">Hora inicio</label><input class="form-control" id="f-hor" type="time" value="'+(t.hora_inicio?t.hora_inicio.slice(0,5):'')+'"></div></div><div class="form-group"><label class="form-label">Duración estimada (hs)</label><input class="form-control" id="f-dur" type="number" min="0.5" max="12" step="0.5" value="'+(t.duracion_hs||'')+'"></div><div class="form-group"><label class="form-label">Estado</label><select class="form-control" id="f-est"><option'+(t.estado==="Pendiente"?" selected":"")+'>Pendiente</option><option'+(t.estado==="En progreso"?" selected":"")+'>En progreso</option><option'+(t.estado==="Completado"?" selected":"")+'>Completado</option></select></div><div class="form-group"><label class="form-label">Observaciones</label><textarea class="form-control" id="f-obs" rows="2">'+(t.observaciones||'')+'</textarea></div><div class="form-actions"><button class="btn btn-danger" onclick="delT(''+id+'')">🗑 Eliminar</button><button class="btn btn-primary" onclick="upT(''+id+'')">Guardar</button></div>');}
+function mC(c){const ie=!!c,tp=(c&&c.tipo_cliente)||'persona',uo=US.map(u=>'<option value="'+u.id+'"'+(c&&c.responsable_id===u.id?' selected':'')+'>'+u.nombre+'</option>').join('');openM('<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:18px"><div class="modal-title" style="margin:0">'+(ie?'Editar':'Nuevo')+' cliente</div><button class="modal-close" onclick="closeModal()">✕</button></div><div class="form-group"><label class="form-label">Nombre *</label><input class="form-control" id="f-nom" value="'+(c?c.nombre:'')+'"></div><div class="form-group"><label class="form-label">Tipo</label>'+tpSel(tp)+'</div>'+fP(c)+fE(c)+fB(c)+'<div class="form-group"><label class="form-label">Dirección servicio</label><input class="form-control" id="f-dir" value="'+(c?c.direccion||'':'')+'"></div><div class="form-group"><label class="form-label">Responsable</label><select class="form-control" id="f-resp"><option value="">Sin asignar</option>'+uo+'</select></div><div class="form-group"><label class="form-label">Estado</label><select class="form-control" id="f-est"><option'+((!c||c.estado==="Activo")?" selected":"")+'>Activo</option><option'+(c&&c.estado==="Prospecto"?" selected":"")+'>Prospecto</option><option'+(c&&c.estado==="Pausado"?" selected":"")+'>Pausado</option><option'+(c&&c.estado==="Baja"?" selected":"")+'>Baja</option></select></div><div class="form-group"><label class="form-label">Notas</label><textarea class="form-control" id="f-not" rows="2">'+(c?c.notas||'':'')+'</textarea></div><div class="form-actions">'+(ie?'<button class="btn btn-danger" onclick="delC(''+c.id+'')">🗑</button>':'')+'<button class="btn btn-secondary" onclick="closeModal()">Cancelar</button><button class="btn btn-primary" onclick="'+(ie?'upC(''+c.id+'')':'svC()')+'">Guardar</button></div>');selTp(tp);}
+function edC(id){const c=CL.find(x=>x.id===id);if(c)mC(c);}
+function mU(u){const ie=!!u,ro=RO.map(r=>'<option value="'+r.id+'"'+(u&&u.rol_id===r.id?' selected':'')+'>'+r.nombre+'</option>').join('');openM('<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:18px"><div class="modal-title" style="margin:0">'+(ie?'Editar':'Nuevo')+' integrante</div><button class="modal-close" onclick="closeModal()">✕</button></div><div class="form-group"><label class="form-label">Nombre *</label><input class="form-control" id="f-nom" value="'+(u?u.nombre:'')+'"></div><div class="form-group"><label class="form-label">Rol</label><select class="form-control" id="f-rol">'+ro+'</select></div><div class="form-group"><label class="form-label">Célula</label><input class="form-control" id="f-cel" value="'+(u?u.celula||'':'')+'"></div><div class="form-row"><div class="form-group"><label class="form-label">Teléfono</label><input class="form-control" id="f-tel" type="tel" value="'+(u?u.telefono||'':'')+'"></div><div class="form-group"><label class="form-label">Email</label><input class="form-control" id="f-email" type="email" value="'+(u?u.email||'':'')+'"></div></div>'+(ie?'<div class="form-group"><label class="form-label">Estado</label><select class="form-control" id="f-act"><option value="true"'+(u&&u.activo!==false?' selected':'')+'>Activo</option><option value="false"'+(u&&u.activo===false?' selected':'')+'>Inactivo</option></select></div>':'')+'<div class="form-actions">'+(ie?'<button class="btn btn-danger" onclick="delU(''+u.id+'')">🗑</button>':'')+'<button class="btn btn-secondary" onclick="closeModal()">Cancelar</button><button class="btn btn-primary" onclick="'+(ie?'upU(''+u.id+'')':'svU()')+'">Guardar</button></div>');}
+function edU(id){const u=US.find(x=>x.id===id);if(u)mU(u);}
 function nTC(id){mT(id);}
-
-function gv(id){var el=document.getElementById(id);return el?el.value||null:null;}
-function gcf(tp){
-  if(tp==='persona')return{telefono:gv('f-tel'),email:gv('f-email'),contacto_nombre:null,contacto_cargo:null,contacto_telefono:null,contacto_email:null,dir_administracion:null};
-  if(tp==='empresa')return{telefono:null,email:null,contacto_nombre:gv('f-cn'),contacto_cargo:gv('f-cc'),contacto_telefono:gv('f-ct'),contacto_email:gv('f-ce'),dir_administracion:null};
-  return{telefono:null,email:null,contacto_nombre:gv('f-cn'),contacto_cargo:null,contacto_telefono:gv('f-ct'),contacto_email:gv('f-ce'),dir_administracion:gv('f-da')};
-}
-
-async function svC(){
-  var n=document.getElementById('f-nom').value.trim();if(!n)return alert('El nombre es obligatorio');
-  var tp=document.getElementById('htp').value;
-  try{await api('clientes','POST',{nombre:n,tipo_cliente:tp,direccion:gv('f-dir'),responsable_id:gv('f-resp'),estado:document.getElementById('f-est').value,notas:gv('f-not'),...gcf(tp)});closeModal();await load();render();}
-  catch(e){alert('Error: '+e.message);}
-}
-async function upC(id){
-  var n=document.getElementById('f-nom').value.trim();if(!n)return alert('El nombre es obligatorio');
-  var tp=document.getElementById('htp').value;
-  try{await api('clientes?id=eq.'+id,'PATCH',{nombre:n,tipo_cliente:tp,direccion:gv('f-dir'),estado:document.getElementById('f-est').value,notas:gv('f-not'),...gcf(tp)});closeModal();await load();render();}
-  catch(e){alert('Error: '+e.message);}
-}
-async function delC(id){if(!confirm('¿Eliminar este cliente?'))return;try{await api('clientes?id=eq.'+id,'DELETE');closeModal();await load();render();}catch(e){alert('Error: '+e.message);}}
-
-async function svU(){
-  var n=document.getElementById('f-nom').value.trim();if(!n)return alert('El nombre es obligatorio');
-  try{await api('usuarios','POST',{nombre:n,rol_id:gv('f-rol'),celula:gv('f-cel'),telefono:gv('f-tel'),email:gv('f-email')});closeModal();await load();render();}
-  catch(e){alert('Error: '+e.message);}
-}
-async function upU(id){
-  var n=document.getElementById('f-nom').value.trim();if(!n)return alert('El nombre es obligatorio');
-  try{await api('usuarios?id=eq.'+id,'PATCH',{nombre:n,rol_id:gv('f-rol'),celula:gv('f-cel'),telefono:gv('f-tel'),email:gv('f-email'),activo:document.getElementById('f-act').value==='true'});closeModal();await load();render();}
-  catch(e){alert('Error: '+e.message);}
-}
-async function delU(id){if(!confirm('¿Eliminar este integrante?'))return;try{await api('usuarios?id=eq.'+id,'DELETE');closeModal();await load();render();}catch(e){alert('Error: '+e.message);}}
-
-async function svT(){
-  var t=document.getElementById('f-tit').value.trim();if(!t)return alert('El título es obligatorio');
-  try{await api('tareas','POST',{titulo:t,cliente_id:gv('f-cli'),servicio_id:gv('f-srv'),asignado_a:gv('f-asi'),fecha_programada:gv('f-fec'),hora_inicio:gv('f-hor'),observaciones:gv('f-obs'),estado:'Pendiente'});closeModal();await load();render();}
-  catch(e){alert('Error: '+e.message);}
-}
-async function upT(id){
-  try{await api('tareas?id=eq.'+id,'PATCH',{titulo:document.getElementById('f-tit').value,cliente_id:gv('f-cli'),asignado_a:gv('f-asi'),fecha_programada:gv('f-fec'),estado:document.getElementById('f-est').value,observaciones:gv('f-obs')});closeModal();await load();render();}
-  catch(e){alert('Error: '+e.message);}
-}
-async function delT(id){if(!confirm('¿Eliminar esta tarea?'))return;try{await api('tareas?id=eq.'+id,'DELETE');closeModal();await load();render();}catch(e){alert('Error: '+e.message);}}
-
-async function tog(id,est){
-  var n=est==='Pendiente'?'En progreso':est==='En progreso'?'Completado':'Pendiente';
-  try{await api('tareas?id=eq.'+id,'PATCH',{estado:n});await load();render();}catch(e){alert('Error: '+e.message);}
-}
-
+function gv(id){const el=document.getElementById(id);return el?el.value||null:null;}
+function gcf(tp){if(tp==='persona')return{telefono:gv('f-tel'),email:gv('f-email'),contacto_nombre:null,contacto_cargo:null,contacto_telefono:null,contacto_email:null,dir_administracion:null};if(tp==='empresa')return{telefono:null,email:null,contacto_nombre:gv('f-cn'),contacto_cargo:gv('f-cc'),contacto_telefono:gv('f-ct'),contacto_email:gv('f-ce'),dir_administracion:null};return{telefono:null,email:null,contacto_nombre:gv('f-cn'),contacto_cargo:null,contacto_telefono:gv('f-ct'),contacto_email:gv('f-ce'),dir_administracion:gv('f-da')};}
+async function svT(){const t=document.getElementById('f-tit').value.trim();if(!t)return alert('El título es obligatorio');const asig=gv('f-asi'),fec=gv('f-fec'),hor=gv('f-hor');try{await api('tareas','POST',{titulo:t,cliente_id:gv('f-cli'),servicio_id:gv('f-srv'),asignado_a:asig,fecha_programada:fec,hora_inicio:hor,duracion_hs:gv('f-dur')?parseFloat(gv('f-dur')):null,observaciones:gv('f-obs'),estado:'Pendiente'});closeModal();await load();render();toast('✅ Tarea guardada');const quien=US.find(u=>u.id===asig)?.nombre||'el equipo';notif('Nueva tarea asignada',t+' → '+quien+(fec?' el '+fec:'')+(hor?' a las '+hor:''));}catch(e){alert('Error: '+e.message);}}
+async function upT(id){const est=document.getElementById('f-est').value;try{await api('tareas?id=eq.'+id,'PATCH',{titulo:document.getElementById('f-tit').value,cliente_id:gv('f-cli'),asignado_a:gv('f-asi'),fecha_programada:gv('f-fec'),hora_inicio:gv('f-hor'),duracion_hs:gv('f-dur')?parseFloat(gv('f-dur')):null,estado:est,observaciones:gv('f-obs')});closeModal();await load();render();toast('✅ Tarea actualizada');if(est==='Completado')notif('Tarea completada ✅','Una tarea fue marcada como completada');}catch(e){alert('Error: '+e.message);}}
+async function delT(id){if(!confirm('¿Eliminar esta tarea?'))return;try{await api('tareas?id=eq.'+id,'DELETE');closeModal();await load();render();toast('Tarea eliminada');}catch(e){alert('Error: '+e.message);}}
+async function tog(id,est){const n=est==='Pendiente'?'En progreso':est==='En progreso'?'Completado':'Pendiente';try{await api('tareas?id=eq.'+id,'PATCH',{estado:n});await load();render();if(n==='Completado'){const t=TA.find(x=>x.id===id);notif('Tarea completada ✅',t?.titulo||'Tarea completada');}}catch(e){alert('Error: '+e.message);}}
+async function svC(){const n=document.getElementById('f-nom').value.trim();if(!n)return alert('El nombre es obligatorio');const tp=document.getElementById('htp').value;try{await api('clientes','POST',{nombre:n,tipo_cliente:tp,direccion:gv('f-dir'),responsable_id:gv('f-resp'),estado:document.getElementById('f-est').value,notas:gv('f-not'),...gcf(tp)});closeModal();await load();render();toast('✅ Cliente guardado');}catch(e){alert('Error: '+e.message);}}
+async function upC(id){const n=document.getElementById('f-nom').value.trim();if(!n)return alert('El nombre es obligatorio');const tp=document.getElementById('htp').value;try{await api('clientes?id=eq.'+id,'PATCH',{nombre:n,tipo_cliente:tp,direccion:gv('f-dir'),estado:document.getElementById('f-est').value,notas:gv('f-not'),...gcf(tp)});closeModal();await load();render();toast('✅ Cliente actualizado');}catch(e){alert('Error: '+e.message);}}
+async function delC(id){if(!confirm('¿Eliminar?'))return;try{await api('clientes?id=eq.'+id,'DELETE');closeModal();await load();render();}catch(e){alert('Error: '+e.message);}}
+async function svU(){const n=document.getElementById('f-nom').value.trim();if(!n)return alert('El nombre es obligatorio');try{await api('usuarios','POST',{nombre:n,rol_id:gv('f-rol'),celula:gv('f-cel'),telefono:gv('f-tel'),email:gv('f-email')});closeModal();await load();render();toast('✅ Integrante guardado');}catch(e){alert('Error: '+e.message);}}
+async function upU(id){const n=document.getElementById('f-nom').value.trim();if(!n)return alert('El nombre es obligatorio');try{await api('usuarios?id=eq.'+id,'PATCH',{nombre:n,rol_id:gv('f-rol'),celula:gv('f-cel'),telefono:gv('f-tel'),email:gv('f-email'),activo:document.getElementById('f-act').value==='true'});closeModal();await load();render();toast('✅ Actualizado');}catch(e){alert('Error: '+e.message);}}
+async function delU(id){if(!confirm('¿Eliminar?'))return;try{await api('usuarios?id=eq.'+id,'DELETE');closeModal();await load();render();}catch(e){alert('Error: '+e.message);}}
 (async()=>{await load();render();})();
 </script>
 </body>
