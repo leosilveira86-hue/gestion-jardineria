@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>GestiónVerde</title>
+<title>GestiÃ³nVerde</title>
 <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <style>
   :root {
@@ -82,16 +82,17 @@
 </head>
 <body>
 <div class="header">
-  <div><div class="header-title">🌿 GestiónVerde</div><div class="header-sub">Panel operativo</div></div>
+  <img style="height:30px;object-fit:contain" src="https://cireneos.org/wp-content/uploads/2024/02/logo_horizontal_blanco.png" alt="Cireneos">
+  <button id="notif-btn" onclick="toggleNotif()" style="background:rgba(255,255,255,.15);border:1px solid rgba(255,255,255,.3);border-radius:8px;color:white;padding:6px 10px;font-size:11px;font-weight:600;cursor:pointer;font-family:'DM Sans',sans-serif">🔔 Activar alertas</button>
 </div>
 <nav class="nav">
-  <button class="nav-btn active" onclick="showTab('dashboard')">📊 Inicio</button>
-  <button class="nav-btn" onclick="showTab('tareas')">✅ Tareas</button>
-  <button class="nav-btn" onclick="showTab('clientes')">👤 Clientes</button>
-  <button class="nav-btn" onclick="showTab('equipo')">👷 Equipo</button>
+  <button class="nav-btn active" onclick="showTab('dashboard')">ð Inicio</button>
+  <button class="nav-btn" onclick="showTab('tareas')">â Tareas</button>
+  <button class="nav-btn" onclick="showTab('clientes')">ð¤ Clientes</button>
+  <button class="nav-btn" onclick="showTab('equipo')">ð· Equipo</button>
 </nav>
 <div class="content" id="main-content"><div class="loading"><div class="spinner"></div>Cargando...</div></div>
-<button class="fab" onclick="openFab()">＋</button>
+<button class="fab" onclick="openFab()">ï¼</button>
 <div class="modal-overlay" id="modal-overlay" onclick="closeModal(event)">
   <div class="modal" id="modal-content"></div>
 </div>
@@ -146,52 +147,52 @@ function rDash(){
     '<div class="stat-card"><div class="stat-num" style="color:var(--warning)">'+p+'</div><div class="stat-label">Pendientes</div></div>'+
     '<div class="stat-card"><div class="stat-num" style="color:var(--green-mid)">'+d+'</div><div class="stat-label">Completadas</div></div>'+
     '</div><div class="section-title">Tareas de hoy</div>'+
-    (hT.length===0?'<div class="empty"><div class="empty-icon">☀️</div><div class="empty-text">No hay tareas para hoy</div></div>':hT.map(tI).join(''))+
-    (ip.length>0?'<div class="section-title" style="margin-top:16px">🔄 En progreso</div>'+ip.map(tI).join(''):'');
+    (hT.length===0?'<div class="empty"><div class="empty-icon">âï¸</div><div class="empty-text">No hay tareas para hoy</div></div>':hT.map(tI).join(''))+
+    (ip.length>0?'<div class="section-title" style="margin-top:16px">ð En progreso</div>'+ip.map(tI).join(''):'');
 }
 
 function tI(t){
   return '<div class="task-item">'+
-    '<div class="task-check '+(t.estado==='Completado'?'done':'')+'" onclick="tog(\''+t.id+'\',\''+t.estado+'\')">'+(t.estado==='Completado'?'✓':'')+'</div>'+
+    '<div class="task-check '+(t.estado==='Completado'?'done':'')+'" onclick="tog(\''+t.id+'\',\''+t.estado+'\')">'+(t.estado==='Completado'?'â':'')+'</div>'+
     '<div class="task-info">'+
       '<div class="task-title">'+t.titulo+'</div>'+
-      '<div class="task-meta">'+(t.clientes?.nombre||'—')+' · '+(t.usuarios?.nombre||'Sin asignar')+(t.hora_inicio?' · '+t.hora_inicio.slice(0,5):'')+'</div>'+
+      '<div class="task-meta">'+(t.clientes?.nombre||'â')+' Â· '+(t.usuarios?.nombre||'Sin asignar')+(t.hora_inicio?' Â· '+t.hora_inicio.slice(0,5):'')+'</div>'+
       '<span class="badge '+(t.estado==='Pendiente'?'badge-pending':t.estado==='En progreso'?'badge-progress':'badge-done')+'">'+t.estado+'</span>'+
     '</div>'+
-    '<button class="btn btn-sm btn-secondary" onclick="edT(\''+t.id+'\')">✏️</button>'+
+    '<button class="btn btn-sm btn-secondary" onclick="edT(\''+t.id+'\')">âï¸</button>'+
   '</div>';
 }
 
 function rTareas(){
   return '<div class="section-title">Tareas ('+TA.length+')</div>'+
-    (TA.length===0?'<div class="empty"><div class="empty-icon">✅</div><div class="empty-text">No hay tareas.<br>Tocá + para crear.</div></div>':TA.map(tI).join(''));
+    (TA.length===0?'<div class="empty"><div class="empty-icon">â</div><div class="empty-text">No hay tareas.<br>TocÃ¡ + para crear.</div></div>':TA.map(tI).join(''));
 }
 
-function tpI(t){return t==='empresa'?'🏢':t==='barrio'?'🏘️':'👤';}
-function tpL(t){return t==='empresa'?'Empresa':t==='barrio'?'Barrio/Consorcio':'Persona física';}
+function tpI(t){return t==='empresa'?'ð¢':t==='barrio'?'ðï¸':'ð¤';}
+function tpL(t){return t==='empresa'?'Empresa':t==='barrio'?'Barrio/Consorcio':'Persona fÃ­sica';}
 
 function rClientes(){
   return '<div class="section-title">Clientes ('+CL.length+')</div>'+
-    (CL.length===0?'<div class="empty"><div class="empty-icon">👤</div><div class="empty-text">No hay clientes.<br>Tocá + para agregar.</div></div>':
+    (CL.length===0?'<div class="empty"><div class="empty-icon">ð¤</div><div class="empty-text">No hay clientes.<br>TocÃ¡ + para agregar.</div></div>':
     CL.map(c=>{
       const tp=c.tipo_cliente||'persona';
       const ct=c.contacto_nombre?
         '<div class="contact-card">'+
-          '<div class="contact-row">👤 <b>'+c.contacto_nombre+'</b>'+(c.contacto_cargo?' — '+c.contacto_cargo:'')+'</div>'+
-          (c.contacto_telefono?'<div class="contact-row">📞 '+c.contacto_telefono+'</div>':'')+
-          (c.contacto_email?'<div class="contact-row">✉️ '+c.contacto_email+'</div>':'')+
+          '<div class="contact-row">ð¤ <b>'+c.contacto_nombre+'</b>'+(c.contacto_cargo?' â '+c.contacto_cargo:'')+'</div>'+
+          (c.contacto_telefono?'<div class="contact-row">ð '+c.contacto_telefono+'</div>':'')+
+          (c.contacto_email?'<div class="contact-row">âï¸ '+c.contacto_email+'</div>':'')+
         '</div>':'';
       return '<div class="card">'+
         '<div class="card-header">'+
-          '<div><div class="card-title">'+tpI(tp)+' '+c.nombre+'</div><div class="card-sub">'+(c.direccion||'Sin dirección')+'</div></div>'+
+          '<div><div class="card-title">'+tpI(tp)+' '+c.nombre+'</div><div class="card-sub">'+(c.direccion||'Sin direcciÃ³n')+'</div></div>'+
           '<div style="display:flex;flex-direction:column;align-items:flex-end;gap:4px">'+
             '<span class="badge '+(c.estado==='Activo'?'badge-active':'badge-paused')+'">'+(c.estado||'Activo')+'</span>'+
             '<span class="badge badge-type">'+tpL(tp)+'</span>'+
           '</div>'+
         '</div>'+
-        (tp==='persona'?'<div class="card-body">'+(c.telefono?'📞 '+c.telefono:'')+(c.email?' · ✉️ '+c.email:'')+'</div>':ct)+
+        (tp==='persona'?'<div class="card-body">'+(c.telefono?'ð '+c.telefono:'')+(c.email?' Â· âï¸ '+c.email:'')+'</div>':ct)+
         '<div style="margin-top:10px;display:flex;gap:8px">'+
-          '<button class="btn btn-sm btn-secondary" onclick="edC(\''+c.id+'\')">✏️ Editar</button>'+
+          '<button class="btn btn-sm btn-secondary" onclick="edC(\''+c.id+'\')">âï¸ Editar</button>'+
           '<button class="btn btn-sm btn-primary" onclick="nTC(\''+c.id+'\')">+ Tarea</button>'+
         '</div></div>';
     }).join(''));
@@ -199,17 +200,17 @@ function rClientes(){
 
 function rEquipo(){
   return '<div class="section-title">Equipo ('+US.length+')</div>'+
-    (US.length===0?'<div class="empty"><div class="empty-icon">👷</div><div class="empty-text">No hay equipo.<br>Tocá + para agregar.</div></div>':
+    (US.length===0?'<div class="empty"><div class="empty-icon">ð·</div><div class="empty-text">No hay equipo.<br>TocÃ¡ + para agregar.</div></div>':
     US.map(u=>
       '<div class="card">'+
         '<div class="card-header">'+
-          '<div><div class="card-title">'+u.nombre+'</div><div class="card-sub">'+(u.roles?.nombre||'Sin rol')+(u.celula?' · Célula: '+u.celula:'')+'</div></div>'+
+          '<div><div class="card-title">'+u.nombre+'</div><div class="card-sub">'+(u.roles?.nombre||'Sin rol')+(u.celula?' Â· CÃ©lula: '+u.celula:'')+'</div></div>'+
           '<div style="display:flex;gap:6px;align-items:center">'+
             '<span class="badge '+(u.activo?'badge-active':'badge-paused')+'">'+(u.activo?'Activo':'Inactivo')+'</span>'+
-            '<button class="btn btn-sm btn-secondary" onclick="edU(\''+u.id+'\')">✏️</button>'+
+            '<button class="btn btn-sm btn-secondary" onclick="edU(\''+u.id+'\')">âï¸</button>'+
           '</div>'+
         '</div>'+
-        (u.telefono||u.email?'<div class="card-body">'+(u.telefono?'📞 '+u.telefono:'')+(u.email?' · ✉️ '+u.email:'')+'</div>':'')+
+        (u.telefono||u.email?'<div class="card-body">'+(u.telefono?'ð '+u.telefono:'')+(u.email?' Â· âï¸ '+u.email:'')+'</div>':'')+
       '</div>'
     ).join(''));
 }
@@ -232,13 +233,13 @@ function selTp(t){
 }
 
 function tpSel(s){s=s||'persona';return '<input type="hidden" id="htp" value="'+s+'"><div class="type-selector">'+
-  '<button type="button" class="type-btn '+(s==='persona'?'selected':'')+'" id="tp-persona" onclick="selTp(\'persona\')"><span class="type-icon">👤</span>Persona</button>'+
-  '<button type="button" class="type-btn '+(s==='empresa'?'selected':'')+'" id="tp-empresa" onclick="selTp(\'empresa\')"><span class="type-icon">🏢</span>Empresa</button>'+
-  '<button type="button" class="type-btn '+(s==='barrio'?'selected':'')+'" id="tp-barrio" onclick="selTp(\'barrio\')"><span class="type-icon">🏘️</span>Barrio</button>'+
+  '<button type="button" class="type-btn '+(s==='persona'?'selected':'')+'" id="tp-persona" onclick="selTp(\'persona\')"><span class="type-icon">ð¤</span>Persona</button>'+
+  '<button type="button" class="type-btn '+(s==='empresa'?'selected':'')+'" id="tp-empresa" onclick="selTp(\'empresa\')"><span class="type-icon">ð¢</span>Empresa</button>'+
+  '<button type="button" class="type-btn '+(s==='barrio'?'selected':'')+'" id="tp-barrio" onclick="selTp(\'barrio\')"><span class="type-icon">ðï¸</span>Barrio</button>'+
 '</div>';}
 
 function fP(c){c=c||{};return '<div id="fp"><div class="form-row">'+
-  '<div class="form-group"><label class="form-label">Teléfono</label><input class="form-control" id="f-tel" type="tel" value="'+(c.telefono||'')+'"></div>'+
+  '<div class="form-group"><label class="form-label">TelÃ©fono</label><input class="form-control" id="f-tel" type="tel" value="'+(c.telefono||'')+'"></div>'+
   '<div class="form-group"><label class="form-label">Email</label><input class="form-control" id="f-email" type="email" value="'+(c.email||'')+'"></div>'+
 '</div></div>';}
 
@@ -246,17 +247,17 @@ function fE(c){c=c||{};return '<div id="fe"><div class="section-divider">Contact
   '<div class="form-group"><label class="form-label">Nombre del contacto</label><input class="form-control" id="f-cn" value="'+(c.contacto_nombre||'')+'"></div>'+
   '<div class="form-group"><label class="form-label">Cargo</label><input class="form-control" id="f-cc" value="'+(c.contacto_cargo||'')+'"></div>'+
   '<div class="form-row">'+
-    '<div class="form-group"><label class="form-label">Teléfono</label><input class="form-control" id="f-ct" type="tel" value="'+(c.contacto_telefono||'')+'"></div>'+
+    '<div class="form-group"><label class="form-label">TelÃ©fono</label><input class="form-control" id="f-ct" type="tel" value="'+(c.contacto_telefono||'')+'"></div>'+
     '<div class="form-group"><label class="form-label">Email</label><input class="form-control" id="f-ce" type="email" value="'+(c.contacto_email||'')+'"></div>'+
   '</div></div>';}
 
 function fB(c){c=c||{};return '<div id="fb"><div class="section-divider">Datos del administrador</div>'+
   '<div class="form-group"><label class="form-label">Nombre del administrador</label><input class="form-control" id="f-cn" value="'+(c.contacto_nombre||'')+'"></div>'+
   '<div class="form-row">'+
-    '<div class="form-group"><label class="form-label">Teléfono</label><input class="form-control" id="f-ct" type="tel" value="'+(c.contacto_telefono||'')+'"></div>'+
+    '<div class="form-group"><label class="form-label">TelÃ©fono</label><input class="form-control" id="f-ct" type="tel" value="'+(c.contacto_telefono||'')+'"></div>'+
     '<div class="form-group"><label class="form-label">Email</label><input class="form-control" id="f-ce" type="email" value="'+(c.contacto_email||'')+'"></div>'+
   '</div>'+
-  '<div class="form-group"><label class="form-label">Dir. administración</label><input class="form-control" id="f-da" value="'+(c.dir_administracion||'')+'"></div>'+
+  '<div class="form-group"><label class="form-label">Dir. administraciÃ³n</label><input class="form-control" id="f-da" value="'+(c.dir_administracion||'')+'"></div>'+
 '</div>';}
 
 function mC(c){
@@ -265,12 +266,12 @@ function mC(c){
   openM(
     '<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:18px">'+
       '<div class="modal-title" style="margin:0">'+(ie?'Editar':'Nuevo')+' cliente</div>'+
-      '<button class="modal-close" onclick="closeModal()">✕</button>'+
+      '<button class="modal-close" onclick="closeModal()">â</button>'+
     '</div>'+
-    '<div class="form-group"><label class="form-label">Nombre / Razón social *</label><input class="form-control" id="f-nom" value="'+(c?c.nombre:'')+'"></div>'+
+    '<div class="form-group"><label class="form-label">Nombre / RazÃ³n social *</label><input class="form-control" id="f-nom" value="'+(c?c.nombre:'')+'"></div>'+
     '<div class="form-group"><label class="form-label">Tipo de cliente</label>'+tpSel(tp)+'</div>'+
     fP(c)+fE(c)+fB(c)+
-    '<div class="form-group"><label class="form-label">Dirección del servicio</label><input class="form-control" id="f-dir" value="'+(c?c.direccion||'':'')+'"></div>'+
+    '<div class="form-group"><label class="form-label">DirecciÃ³n del servicio</label><input class="form-control" id="f-dir" value="'+(c?c.direccion||'':'')+'"></div>'+
     '<div class="form-group"><label class="form-label">Responsable interno</label><select class="form-control" id="f-resp"><option value="">Sin asignar</option>'+uo+'</select></div>'+
     '<div class="form-group"><label class="form-label">Estado</label><select class="form-control" id="f-est">'+
       '<option'+((!c||c.estado==='Activo')?' selected':'')+'>Activo</option>'+
@@ -280,7 +281,7 @@ function mC(c){
     '</select></div>'+
     '<div class="form-group"><label class="form-label">Notas</label><textarea class="form-control" id="f-not" rows="2">'+(c?c.notas||'':'')+'</textarea></div>'+
     '<div class="form-actions">'+
-      (ie?'<button class="btn btn-danger" onclick="delC(\''+c.id+'\')">🗑</button>':'')+
+      (ie?'<button class="btn btn-danger" onclick="delC(\''+c.id+'\')">ð</button>':'')+
       '<button class="btn btn-secondary" onclick="closeModal()">Cancelar</button>'+
       '<button class="btn btn-primary" onclick="'+(ie?'upC(\''+c.id+'\')':'svC()')+'">Guardar</button>'+
     '</div>'
@@ -295,13 +296,13 @@ function mU(u){
   openM(
     '<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:18px">'+
       '<div class="modal-title" style="margin:0">'+(ie?'Editar':'Nuevo')+' integrante</div>'+
-      '<button class="modal-close" onclick="closeModal()">✕</button>'+
+      '<button class="modal-close" onclick="closeModal()">â</button>'+
     '</div>'+
     '<div class="form-group"><label class="form-label">Nombre *</label><input class="form-control" id="f-nom" value="'+(u?u.nombre:'')+'"></div>'+
     '<div class="form-group"><label class="form-label">Rol</label><select class="form-control" id="f-rol">'+ro+'</select></div>'+
-    '<div class="form-group"><label class="form-label">Célula</label><input class="form-control" id="f-cel" value="'+(u?u.celula||'':'')+'"></div>'+
+    '<div class="form-group"><label class="form-label">CÃ©lula</label><input class="form-control" id="f-cel" value="'+(u?u.celula||'':'')+'"></div>'+
     '<div class="form-row">'+
-      '<div class="form-group"><label class="form-label">Teléfono</label><input class="form-control" id="f-tel" type="tel" value="'+(u?u.telefono||'':'')+'"></div>'+
+      '<div class="form-group"><label class="form-label">TelÃ©fono</label><input class="form-control" id="f-tel" type="tel" value="'+(u?u.telefono||'':'')+'"></div>'+
       '<div class="form-group"><label class="form-label">Email</label><input class="form-control" id="f-email" type="email" value="'+(u?u.email||'':'')+'"></div>'+
     '</div>'+
     (ie?'<div class="form-group"><label class="form-label">Estado</label><select class="form-control" id="f-act">'+
@@ -309,7 +310,7 @@ function mU(u){
       '<option value="false"'+(u&&u.activo===false?' selected':'')+'>Inactivo</option>'+
     '</select></div>':'')+
     '<div class="form-actions">'+
-      (ie?'<button class="btn btn-danger" onclick="delU(\''+u.id+'\')">🗑</button>':'')+
+      (ie?'<button class="btn btn-danger" onclick="delU(\''+u.id+'\')">ð</button>':'')+
       '<button class="btn btn-secondary" onclick="closeModal()">Cancelar</button>'+
       '<button class="btn btn-primary" onclick="'+(ie?'upU(\''+u.id+'\')':'svU()')+'">Guardar</button>'+
     '</div>'
@@ -325,9 +326,9 @@ function mT(cid){
   openM(
     '<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:18px">'+
       '<div class="modal-title" style="margin:0">Nueva tarea</div>'+
-      '<button class="modal-close" onclick="closeModal()">✕</button>'+
+      '<button class="modal-close" onclick="closeModal()">â</button>'+
     '</div>'+
-    '<div class="form-group"><label class="form-label">Título *</label><input class="form-control" id="f-tit"></div>'+
+    '<div class="form-group"><label class="form-label">TÃ­tulo *</label><input class="form-control" id="f-tit"></div>'+
     '<div class="form-group"><label class="form-label">Cliente</label><select class="form-control" id="f-cli"><option value="">Sin cliente</option>'+co+'</select></div>'+
     '<div class="form-group"><label class="form-label">Servicio</label><select class="form-control" id="f-srv"><option value="">Seleccionar...</option>'+so+'</select></div>'+
     '<div class="form-group"><label class="form-label">Asignar a</label><select class="form-control" id="f-asi"><option value="">Sin asignar</option>'+uo+'</select></div>'+
@@ -347,9 +348,9 @@ function edT(id){
   openM(
     '<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:18px">'+
       '<div class="modal-title" style="margin:0">Editar tarea</div>'+
-      '<button class="modal-close" onclick="closeModal()">✕</button>'+
+      '<button class="modal-close" onclick="closeModal()">â</button>'+
     '</div>'+
-    '<div class="form-group"><label class="form-label">Título</label><input class="form-control" id="f-tit" value="'+t.titulo+'"></div>'+
+    '<div class="form-group"><label class="form-label">TÃ­tulo</label><input class="form-control" id="f-tit" value="'+t.titulo+'"></div>'+
     '<div class="form-group"><label class="form-label">Cliente</label><select class="form-control" id="f-cli"><option value="">Sin cliente</option>'+co+'</select></div>'+
     '<div class="form-group"><label class="form-label">Asignar a</label><select class="form-control" id="f-asi"><option value="">Sin asignar</option>'+uo+'</select></div>'+
     '<div class="form-row">'+
@@ -362,7 +363,7 @@ function edT(id){
     '</div>'+
     '<div class="form-group"><label class="form-label">Observaciones</label><textarea class="form-control" id="f-obs" rows="2">'+(t.observaciones||'')+'</textarea></div>'+
     '<div class="form-actions">'+
-      '<button class="btn btn-danger" onclick="delT(\''+id+'\')">🗑 Eliminar</button>'+
+      '<button class="btn btn-danger" onclick="delT(\''+id+'\')">ð Eliminar</button>'+
       '<button class="btn btn-primary" onclick="upT(\''+id+'\')">Guardar</button>'+
     '</div>'
   );
@@ -388,7 +389,7 @@ async function upC(id){
   try{await api('clientes?id=eq.'+id,'PATCH',{nombre:n,tipo_cliente:tp,direccion:gv('f-dir'),estado:document.getElementById('f-est').value,notas:gv('f-not'),...gcf(tp)});closeModal();await load();render();}
   catch(e){alert('Error: '+e.message);}
 }
-async function delC(id){if(!confirm('¿Eliminar este cliente?'))return;try{await api('clientes?id=eq.'+id,'DELETE');closeModal();await load();render();}catch(e){alert('Error: '+e.message);}}
+async function delC(id){if(!confirm('Â¿Eliminar este cliente?'))return;try{await api('clientes?id=eq.'+id,'DELETE');closeModal();await load();render();}catch(e){alert('Error: '+e.message);}}
 
 async function svU(){
   var n=document.getElementById('f-nom').value.trim();if(!n)return alert('El nombre es obligatorio');
@@ -400,10 +401,10 @@ async function upU(id){
   try{await api('usuarios?id=eq.'+id,'PATCH',{nombre:n,rol_id:gv('f-rol'),celula:gv('f-cel'),telefono:gv('f-tel'),email:gv('f-email'),activo:document.getElementById('f-act').value==='true'});closeModal();await load();render();}
   catch(e){alert('Error: '+e.message);}
 }
-async function delU(id){if(!confirm('¿Eliminar este integrante?'))return;try{await api('usuarios?id=eq.'+id,'DELETE');closeModal();await load();render();}catch(e){alert('Error: '+e.message);}}
+async function delU(id){if(!confirm('Â¿Eliminar este integrante?'))return;try{await api('usuarios?id=eq.'+id,'DELETE');closeModal();await load();render();}catch(e){alert('Error: '+e.message);}}
 
 async function svT(){
-  var t=document.getElementById('f-tit').value.trim();if(!t)return alert('El título es obligatorio');
+  var t=document.getElementById('f-tit').value.trim();if(!t)return alert('El tÃ­tulo es obligatorio');
   try{await api('tareas','POST',{titulo:t,cliente_id:gv('f-cli'),servicio_id:gv('f-srv'),asignado_a:gv('f-asi'),fecha_programada:gv('f-fec'),hora_inicio:gv('f-hor'),observaciones:gv('f-obs'),estado:'Pendiente'});closeModal();await load();render();}
   catch(e){alert('Error: '+e.message);}
 }
@@ -411,12 +412,26 @@ async function upT(id){
   try{await api('tareas?id=eq.'+id,'PATCH',{titulo:document.getElementById('f-tit').value,cliente_id:gv('f-cli'),asignado_a:gv('f-asi'),fecha_programada:gv('f-fec'),estado:document.getElementById('f-est').value,observaciones:gv('f-obs')});closeModal();await load();render();}
   catch(e){alert('Error: '+e.message);}
 }
-async function delT(id){if(!confirm('¿Eliminar esta tarea?'))return;try{await api('tareas?id=eq.'+id,'DELETE');closeModal();await load();render();}catch(e){alert('Error: '+e.message);}}
+async function delT(id){if(!confirm('Â¿Eliminar esta tarea?'))return;try{await api('tareas?id=eq.'+id,'DELETE');closeModal();await load();render();}catch(e){alert('Error: '+e.message);}}
 
 async function tog(id,est){
   var n=est==='Pendiente'?'En progreso':est==='En progreso'?'Completado':'Pendiente';
   try{await api('tareas?id=eq.'+id,'PATCH',{estado:n});await load();render();}catch(e){alert('Error: '+e.message);}
 }
+
+
+var _nOn=false;
+function toggleNotif(){if(_nOn){_nOn=false;_uNB();_sT('Alertas desactivadas');return;}if(!('Notification'in window)){_sT('No soportado');return;}Notification.requestPermission().then(function(p){if(p==='granted'){_nOn=true;_uNB();_sT('Alertas activadas');new Notification('Cireneos',{body:'Alertas activas'});}else _sT('Permiso denegado');});}
+function _uNB(){var b=document.getElementById('notif-btn');if(b){b.textContent=_nOn?'ON':'Activar alertas';b.style.background=_nOn?'#7a9048':'rgba(255,255,255,.15)';}}
+function _sN(t,b){if(!_nOn||Notification.permission!=='granted')return;try{new Notification(t,{body:b,icon:'https://cireneos.org/wp-content/uploads/2024/02/logo_horizontal_blanco.png'});}catch(e){}}
+function _sT(m){var el=document.getElementById('_xt');if(!el){el=document.createElement('div');el.id='_xt';el.style.cssText='position:fixed;top:72px;left:50%;transform:translateX(-50%);background:#2e3a1c;color:white;padding:10px 18px;border-radius:10px;font-size:13px;font-weight:600;z-index:999;opacity:0;transition:opacity .3s;pointer-events:none;white-space:nowrap';document.body.appendChild(el);}el.textContent=m;el.style.opacity='1';setTimeout(function(){el.style.opacity='0';},3000);}
+var _cOff=0;
+var _CD=['Dom','Lun','Mar','Mie','Jue','Vie','Sab'];
+var _CM=['Ene','Feb','Mar','Abr','May','Jun','Jul','Ago','Sep','Oct','Nov','Dic'];
+function _wD(off){var n=new Date(),day=n.getDay(),mon=new Date(n);mon.setDate(n.getDate()-(day===0?6:day-1)+(off*7));return[0,1,2,3,4,5,6].map(function(i){var d=new Date(mon);d.setDate(mon.getDate()+i);return d;});}
+function _fd(d){return d.toISOString().split('T')[0];}
+function renderCalendar(){var dates=_wD(_cOff),today=_fd(new Date());var ttl=dates[0].getDate()+' - '+dates[6].getDate()+' '+_CM[dates[6].getMonth()]+' '+dates[6].getFullYear();var h='<div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:12px"><button onclick="_cOff--;render()" style="background:#f2f0eb;border:none;border-radius:8px;width:32px;height:32px;font-size:18px;cursor:pointer;color:#4a5c2f">&#8249;</button><div style="font-size:14px;font-weight:700">'+ttl+'</div><button onclick="_cOff++;render()" style="background:#f2f0eb;border:none;border-radius:8px;width:32px;height:32px;font-size:18px;cursor:pointer;color:#4a5c2f">&#8250;</button></div>';h+='<div style="background:white;border-radius:12px;border:1px solid #ddd9ce;overflow:hidden"><div style="display:grid;grid-template-columns:40px repeat(7,1fr);background:#2e3a1c"><div></div>';dates.forEach(function(d){var isT=_fd(d)===today;h+='<div style="padding:8px 2px;text-align:center;color:white"><div style="font-size:9px;opacity:.75">'+_CD[d.getDay()]+'</div><div style="font-size:13px;font-weight:700'+(isT?';background:#7a9048;border-radius:50%;width:20px;height:20px;display:flex;align-items:center;justify-content:center;margin:2px auto 0':';margin-top:2px')+'">'+d.getDate()+'</div></div>';});h+='</div><div style="overflow-y:auto;max-height:460px"><div id="cal-body" style="display:grid;grid-template-columns:40px repeat(7,1fr)">';[7,8,9,10,11,12,13,14,15,16,17,18,19].forEach(function(hr){h+='<div style="font-size:9px;color:#8a8678;text-align:right;padding:4px 4px 0 0;height:52px;border-right:1px solid #ddd9ce;border-bottom:1px solid #f2f0eb">'+(hr<10?'0':'')+hr+'h</div>';dates.forEach(function(d,di){h+='<div style="border-right:1px solid #ddd9ce;border-bottom:1px solid #f2f0eb;height:52px;position:relative" id="cc3-'+di+'-'+hr+'"></div>';});});h+='</div></div></div>';h+='<div style="display:flex;gap:12px;margin-top:10px;flex-wrap:wrap"><div style="display:flex;align-items:center;gap:4px;font-size:10px"><div style="width:10px;height:10px;border-radius:2px;background:#fff3cd;border-left:2px solid #e6ac00"></div>Pendiente</div><div style="display:flex;align-items:center;gap:4px;font-size:10px"><div style="width:10px;height:10px;border-radius:2px;background:#cfe2ff;border-left:2px solid #2980b9"></div>En progreso</div><div style="display:flex;align-items:center;gap:4px;font-size:10px"><div style="width:10px;height:10px;border-radius:2px;background:#eef2e6;border-left:2px solid #7a9048"></div>Completado</div></div>';return h;}
+function drawCalendarTasks(){var dates=_wD(_cOff),today=_fd(new Date()),SL=52,ST=7;var ti=dates.findIndex(function(d){return _fd(d)===today;});if(ti>=0){var now=new Date(),tp=((now.getHours()-ST)*60+now.getMinutes())/60*SL;var fc=document.getElementById('cc3-'+ti+'-'+ST);if(fc){var nl=document.createElement('div');nl.style.cssText='position:absolute;top:'+tp+'px;left:0;right:0;height:2px;background:#c0392b;z-index:10;pointer-events:none';nl.innerHTML='<div style="position:absolute;left:-4px;top:-4px;width:10px;height:10px;border-radius:50%;background:#c0392b"></div>';fc.parentElement.style.position='relative';fc.parentElement.appendChild(nl);}}tareas.forEach(function(t){if(!t.fecha_programada||!t.hora_inicio)return;var di=dates.findIndex(function(d){return _fd(d)===t.fecha_programada;});if(di<0)return;var p=t.hora_inicio.split(':'),hh=parseInt(p[0]),mm=parseInt(p[1]),dur=parseFloat(t.duracion_hs)||1,tp2=((hh-ST)*60+mm)/60*SL,ht=Math.max(18,dur*SL),sh=Math.min(19,Math.max(ST,hh)),cell=document.getElementById('cc3-'+di+'-'+sh);if(!cell)return;var off=tp2-((sh-ST)*SL);var bg=t.estado==='Completado'?'#eef2e6':t.estado==='En progreso'?'#cfe2ff':'#fff3cd';var cl2=t.estado==='Completado'?'#4a5c2f':t.estado==='En progreso'?'#084298':'#856404';var bl=t.estado==='Completado'?'#7a9048':t.estado==='En progreso'?'#2980b9':'#e6ac00';var el=document.createElement('div');el.style.cssText='position:absolute;left:1px;right:1px;top:'+off+'px;height:'+ht+'px;border-radius:4px;padding:2px 3px;font-size:9px;font-weight:700;overflow:hidden;cursor:pointer;z-index:5;line-height:1.3;background:'+bg+';color:'+cl2+';border-left:2px solid '+bl;var who=t.usuarios&&t.usuarios.nombre?t.usuarios.nombre:'';el.innerHTML='<div style="overflow:hidden;text-overflow:ellipsis;white-space:nowrap">'+t.titulo+'</div>'+(who?'<div style="opacity:.8;font-weight:400;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">'+who+'</div>':'');var tid=t.id;el.onclick=function(){editTask(tid);};cell.appendChild(el);});}
 
 (async()=>{await load();render();})();
 </script>
