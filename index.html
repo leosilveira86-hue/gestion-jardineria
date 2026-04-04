@@ -7,90 +7,82 @@
 <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <style>
   :root {
-    --green-dark: #1a2e1a;
-    --green-mid: #2d5a27;
-    --green-light: #4a8c3f;
-    --green-accent: #6dbd5a;
-    --green-pale: #e8f5e4;
-    --earth: #8B6914;
-    --earth-light: #f5edd6;
-    --white: #f9faf7;
-    --gray-100: #f0f2ee;
-    --gray-200: #dde3d9;
-    --gray-400: #8a9686;
-    --gray-600: #4a5247;
-    --text: #1a2419;
-    --danger: #c0392b;
-    --warning: #e67e22;
-    --radius: 12px;
-    --shadow: 0 2px 16px rgba(26,46,26,0.10);
+    --green-dark:#1a2e1a;--green-mid:#2d5a27;--green-accent:#6dbd5a;--green-pale:#e8f5e4;
+    --earth:#8B6914;--earth-light:#f5edd6;--white:#f9faf7;--gray-100:#f0f2ee;
+    --gray-200:#dde3d9;--gray-400:#8a9686;--gray-600:#4a5247;--text:#1a2419;
+    --danger:#c0392b;--warning:#e67e22;--radius:12px;--shadow:0 2px 16px rgba(26,46,26,.10);
   }
-  * { box-sizing: border-box; margin: 0; padding: 0; }
-  body { font-family: 'DM Sans', sans-serif; background: var(--white); color: var(--text); min-height: 100vh; max-width: 480px; margin: 0 auto; }
-  .header { background: var(--green-dark); color: white; padding: 18px 20px 14px; position: sticky; top: 0; z-index: 100; display: flex; align-items: center; justify-content: space-between; }
-  .header-title { font-size: 18px; font-weight: 600; }
-  .header-sub { font-size: 11px; color: var(--green-accent); font-weight: 500; margin-top: 1px; }
-  .nav { display: flex; background: white; border-bottom: 1px solid var(--gray-200); overflow-x: auto; position: sticky; top: 66px; z-index: 99; }
-  .nav::-webkit-scrollbar { display: none; }
-  .nav-btn { flex: none; padding: 12px 16px; border: none; background: none; font-family: 'DM Sans', sans-serif; font-size: 13px; font-weight: 500; color: var(--gray-400); cursor: pointer; border-bottom: 2px solid transparent; white-space: nowrap; transition: all 0.2s; }
-  .nav-btn.active { color: var(--green-mid); border-bottom-color: var(--green-accent); }
-  .content { padding: 16px; }
-  .card { background: white; border-radius: var(--radius); border: 1px solid var(--gray-200); padding: 16px; margin-bottom: 12px; box-shadow: var(--shadow); }
-  .card-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 10px; }
-  .card-title { font-size: 15px; font-weight: 600; }
-  .card-sub { font-size: 12px; color: var(--gray-400); margin-top: 2px; }
-  .card-body { font-size: 13px; color: var(--gray-600); }
-  .badge { display: inline-block; padding: 3px 10px; border-radius: 99px; font-size: 11px; font-weight: 600; }
-  .badge-pending { background: #fff3cd; color: #856404; }
-  .badge-progress { background: #cfe2ff; color: #084298; }
-  .badge-done { background: var(--green-pale); color: var(--green-mid); }
-  .badge-active { background: var(--green-pale); color: var(--green-mid); }
-  .badge-paused { background: #f8d7da; color: #842029; }
-  .btn { display: inline-flex; align-items: center; gap: 6px; padding: 10px 18px; border-radius: 8px; border: none; font-family: 'DM Sans', sans-serif; font-size: 13px; font-weight: 600; cursor: pointer; transition: all 0.2s; }
-  .btn-primary { background: var(--green-mid); color: white; }
-  .btn-secondary { background: var(--gray-100); color: var(--gray-600); }
-  .btn-danger { background: #fde8e8; color: var(--danger); }
-  .btn-sm { padding: 6px 12px; font-size: 12px; }
-  .fab { position: fixed; bottom: 24px; right: 24px; width: 56px; height: 56px; border-radius: 50%; background: var(--green-mid); color: white; border: none; font-size: 26px; display: flex; align-items: center; justify-content: center; cursor: pointer; box-shadow: 0 4px 20px rgba(45,90,39,0.4); z-index: 200; }
-  .modal-overlay { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.5); z-index: 300; align-items: flex-end; }
-  .modal-overlay.open { display: flex; }
-  .modal { background: white; border-radius: 20px 20px 0 0; padding: 24px 20px 32px; width: 100%; max-height: 85vh; overflow-y: auto; animation: slideUp 0.3s ease; }
-  @keyframes slideUp { from { transform: translateY(100%); } to { transform: translateY(0); } }
-  .modal-title { font-size: 17px; font-weight: 700; margin-bottom: 20px; }
-  .modal-close { float: right; background: var(--gray-100); border: none; border-radius: 50%; width: 28px; height: 28px; font-size: 16px; cursor: pointer; display: flex; align-items: center; justify-content: center; }
-  .form-group { margin-bottom: 14px; }
-  .form-label { font-size: 12px; font-weight: 600; color: var(--gray-600); margin-bottom: 5px; display: block; text-transform: uppercase; letter-spacing: 0.4px; }
-  .form-control { width: 100%; padding: 11px 13px; border: 1.5px solid var(--gray-200); border-radius: 8px; font-family: 'DM Sans', sans-serif; font-size: 14px; color: var(--text); background: white; transition: border-color 0.2s; appearance: none; }
-  .form-control:focus { outline: none; border-color: var(--green-accent); }
-  .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
-  .form-actions { display: flex; gap: 10px; margin-top: 20px; }
-  .form-actions .btn { flex: 1; justify-content: center; }
-  .stats-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 16px; }
-  .stat-card { background: white; border: 1px solid var(--gray-200); border-radius: var(--radius); padding: 14px; text-align: center; }
-  .stat-num { font-size: 28px; font-weight: 700; color: var(--green-mid); }
-  .stat-label { font-size: 11px; color: var(--gray-400); margin-top: 2px; font-weight: 500; }
-  .task-item { display: flex; align-items: flex-start; gap: 12px; padding: 14px; background: white; border: 1px solid var(--gray-200); border-radius: var(--radius); margin-bottom: 10px; }
-  .task-check { width: 22px; height: 22px; border: 2px solid var(--gray-200); border-radius: 50%; flex-shrink: 0; cursor: pointer; display: flex; align-items: center; justify-content: center; margin-top: 1px; transition: all 0.2s; }
-  .task-check.done { background: var(--green-accent); border-color: var(--green-accent); color: white; font-size: 12px; }
-  .task-info { flex: 1; }
-  .task-title { font-size: 14px; font-weight: 600; }
-  .task-meta { font-size: 12px; color: var(--gray-400); margin-top: 3px; }
-  .empty { text-align: center; padding: 40px 20px; color: var(--gray-400); }
-  .empty-icon { font-size: 40px; margin-bottom: 10px; }
-  .empty-text { font-size: 14px; }
-  .loading { text-align: center; padding: 30px; color: var(--gray-400); font-size: 14px; }
-  .spinner { width: 28px; height: 28px; border: 3px solid var(--gray-200); border-top-color: var(--green-accent); border-radius: 50%; animation: spin 0.8s linear infinite; margin: 0 auto 10px; }
-  @keyframes spin { to { transform: rotate(360deg); } }
-  .section-title { font-size: 13px; font-weight: 700; color: var(--gray-400); text-transform: uppercase; letter-spacing: 0.6px; margin-bottom: 10px; margin-top: 6px; }
-  .tag { display: inline-block; background: var(--earth-light); color: var(--earth); font-size: 11px; font-weight: 600; padding: 2px 8px; border-radius: 4px; margin-right: 4px; margin-top: 4px; }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:'DM Sans',sans-serif;background:var(--white);color:var(--text);min-height:100vh;max-width:480px;margin:0 auto}
+  .header{background:var(--green-dark);color:white;padding:18px 20px 14px;position:sticky;top:0;z-index:100;display:flex;align-items:center;justify-content:space-between}
+  .header-title{font-size:18px;font-weight:600}
+  .header-sub{font-size:11px;color:var(--green-accent);font-weight:500;margin-top:1px}
+  .nav{display:flex;background:white;border-bottom:1px solid var(--gray-200);overflow-x:auto;position:sticky;top:66px;z-index:99}
+  .nav::-webkit-scrollbar{display:none}
+  .nav-btn{flex:none;padding:12px 16px;border:none;background:none;font-family:'DM Sans',sans-serif;font-size:13px;font-weight:500;color:var(--gray-400);cursor:pointer;border-bottom:2px solid transparent;white-space:nowrap;transition:all .2s}
+  .nav-btn.active{color:var(--green-mid);border-bottom-color:var(--green-accent)}
+  .content{padding:16px}
+  .card{background:white;border-radius:var(--radius);border:1px solid var(--gray-200);padding:16px;margin-bottom:12px;box-shadow:var(--shadow)}
+  .card-header{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:10px}
+  .card-title{font-size:15px;font-weight:600}
+  .card-sub{font-size:12px;color:var(--gray-400);margin-top:2px}
+  .card-body{font-size:13px;color:var(--gray-600)}
+  .badge{display:inline-block;padding:3px 10px;border-radius:99px;font-size:11px;font-weight:600}
+  .badge-pending{background:#fff3cd;color:#856404}
+  .badge-progress{background:#cfe2ff;color:#084298}
+  .badge-done{background:var(--green-pale);color:var(--green-mid)}
+  .badge-active{background:var(--green-pale);color:var(--green-mid)}
+  .badge-paused{background:#f8d7da;color:#842029}
+  .badge-type{background:var(--earth-light);color:var(--earth)}
+  .btn{display:inline-flex;align-items:center;gap:6px;padding:10px 18px;border-radius:8px;border:none;font-family:'DM Sans',sans-serif;font-size:13px;font-weight:600;cursor:pointer;transition:all .2s}
+  .btn-primary{background:var(--green-mid);color:white}
+  .btn-secondary{background:var(--gray-100);color:var(--gray-600)}
+  .btn-danger{background:#fde8e8;color:var(--danger)}
+  .btn-sm{padding:6px 12px;font-size:12px}
+  .fab{position:fixed;bottom:24px;right:24px;width:56px;height:56px;border-radius:50%;background:var(--green-mid);color:white;border:none;font-size:26px;display:flex;align-items:center;justify-content:center;cursor:pointer;box-shadow:0 4px 20px rgba(45,90,39,.4);z-index:200}
+  .modal-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.5);z-index:300;align-items:flex-end}
+  .modal-overlay.open{display:flex}
+  .modal{background:white;border-radius:20px 20px 0 0;padding:24px 20px 32px;width:100%;max-height:90vh;overflow-y:auto;animation:slideUp .3s ease}
+  @keyframes slideUp{from{transform:translateY(100%)}to{transform:translateY(0)}}
+  .modal-title{font-size:17px;font-weight:700;margin-bottom:20px}
+  .modal-close{float:right;background:var(--gray-100);border:none;border-radius:50%;width:28px;height:28px;font-size:16px;cursor:pointer;display:flex;align-items:center;justify-content:center}
+  .form-group{margin-bottom:14px}
+  .form-label{font-size:12px;font-weight:600;color:var(--gray-600);margin-bottom:5px;display:block;text-transform:uppercase;letter-spacing:.4px}
+  .form-control{width:100%;padding:11px 13px;border:1.5px solid var(--gray-200);border-radius:8px;font-family:'DM Sans',sans-serif;font-size:14px;color:var(--text);background:white;transition:border-color .2s;appearance:none}
+  .form-control:focus{outline:none;border-color:var(--green-accent)}
+  .form-row{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+  .form-actions{display:flex;gap:10px;margin-top:20px}
+  .form-actions .btn{flex:1;justify-content:center}
+  .stats-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:16px}
+  .stat-card{background:white;border:1px solid var(--gray-200);border-radius:var(--radius);padding:14px;text-align:center}
+  .stat-num{font-size:28px;font-weight:700;color:var(--green-mid)}
+  .stat-label{font-size:11px;color:var(--gray-400);margin-top:2px;font-weight:500}
+  .task-item{display:flex;align-items:flex-start;gap:12px;padding:14px;background:white;border:1px solid var(--gray-200);border-radius:var(--radius);margin-bottom:10px}
+  .task-check{width:22px;height:22px;border:2px solid var(--gray-200);border-radius:50%;flex-shrink:0;cursor:pointer;display:flex;align-items:center;justify-content:center;margin-top:1px;transition:all .2s}
+  .task-check.done{background:var(--green-accent);border-color:var(--green-accent);color:white;font-size:12px}
+  .task-info{flex:1}
+  .task-title{font-size:14px;font-weight:600}
+  .task-meta{font-size:12px;color:var(--gray-400);margin-top:3px}
+  .empty{text-align:center;padding:40px 20px;color:var(--gray-400)}
+  .empty-icon{font-size:40px;margin-bottom:10px}
+  .empty-text{font-size:14px}
+  .loading{text-align:center;padding:30px;color:var(--gray-400);font-size:14px}
+  .spinner{width:28px;height:28px;border:3px solid var(--gray-200);border-top-color:var(--green-accent);border-radius:50%;animation:spin .8s linear infinite;margin:0 auto 10px}
+  @keyframes spin{to{transform:rotate(360deg)}}
+  .section-title{font-size:13px;font-weight:700;color:var(--gray-400);text-transform:uppercase;letter-spacing:.6px;margin-bottom:10px;margin-top:6px}
+  .type-selector{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin-bottom:16px}
+  .type-btn{padding:10px 6px;border:2px solid var(--gray-200);border-radius:10px;background:white;font-family:'DM Sans',sans-serif;font-size:12px;font-weight:600;color:var(--gray-400);cursor:pointer;text-align:center;transition:all .2s}
+  .type-btn.selected{border-color:var(--green-accent);color:var(--green-mid);background:var(--green-pale)}
+  .type-btn .type-icon{font-size:20px;display:block;margin-bottom:4px}
+  .section-divider{font-size:12px;font-weight:700;color:var(--green-mid);text-transform:uppercase;letter-spacing:.5px;margin:16px 0 10px;padding-bottom:6px;border-bottom:1px solid var(--green-pale)}
+  .hidden{display:none!important}
+  .contact-card{background:var(--gray-100);border-radius:8px;padding:10px 12px;margin-top:8px;font-size:13px;color:var(--gray-600)}
+  .contact-row{display:flex;gap:6px;align-items:center;padding:3px 0}
 </style>
 </head>
 <body>
 <div class="header">
-  <div>
-    <div class="header-title">🌿 GestiónVerde</div>
-    <div class="header-sub">Panel operativo</div>
-  </div>
+  <div><div class="header-title">🌿 GestiónVerde</div><div class="header-sub">Panel operativo</div></div>
 </div>
 <nav class="nav">
   <button class="nav-btn active" onclick="showTab('dashboard')">📊 Inicio</button>
@@ -98,240 +90,335 @@
   <button class="nav-btn" onclick="showTab('clientes')">👤 Clientes</button>
   <button class="nav-btn" onclick="showTab('equipo')">👷 Equipo</button>
 </nav>
-<div class="content" id="main-content">
-  <div class="loading"><div class="spinner"></div>Cargando...</div>
-</div>
+<div class="content" id="main-content"><div class="loading"><div class="spinner"></div>Cargando...</div></div>
 <button class="fab" onclick="openFab()">＋</button>
 <div class="modal-overlay" id="modal-overlay" onclick="closeModal(event)">
   <div class="modal" id="modal-content"></div>
 </div>
 <script>
-const SUPABASE_URL = 'https://hpcyhqxzdxrhnbquekqz.supabase.co';
-const SUPABASE_KEY = 'sb_publishable_w-IClSpBRLKhWEFBXhqKfg_kpZI1SSK';
-let currentTab = 'dashboard';
-let clientes = [], usuarios = [], servicios = [], tareas = [], roles = [];
-async function api(path, method = 'GET', body = null) {
-  const opts = { method, headers: { 'apikey': SUPABASE_KEY, 'Authorization': 'Bearer ' + SUPABASE_KEY, 'Content-Type': 'application/json', 'Prefer': method === 'POST' ? 'return=representation' : '' } };
-  if (body) opts.body = JSON.stringify(body);
-  const res = await fetch(SUPABASE_URL + '/rest/v1/' + path, opts);
-  if (!res.ok) { const e = await res.text(); throw new Error(e); }
-  if (res.status === 204) return [];
-  return res.json();
+const SB='https://hpcyhqxzdxrhnbquekqz.supabase.co',KEY='sb_publishable_w-IClSpBRLKhWEFBXhqKfg_kpZI1SSK';
+let tab='dashboard',CL=[],US=[],SV=[],TA=[],RO=[];
+
+async function api(p,m='GET',b=null){
+  const o={method:m,headers:{'apikey':KEY,'Authorization':'Bearer '+KEY,'Content-Type':'application/json','Prefer':m==='POST'?'return=representation':''}};
+  if(b)o.body=JSON.stringify(b);
+  const r=await fetch(SB+'/rest/v1/'+p,o);
+  if(!r.ok){const e=await r.text();throw new Error(e);}
+  if(r.status===204)return[];
+  return r.json();
 }
-async function loadAll() {
-  try {
-    [clientes, usuarios, servicios, tareas, roles] = await Promise.all([
+
+async function load(){
+  try{
+    [CL,US,SV,TA,RO]=await Promise.all([
       api('clientes?select=*,usuarios(nombre)&order=creado_en.desc'),
       api('usuarios?select=*,roles(nombre)&order=nombre'),
       api('servicios?select=*'),
       api('tareas?select=*,clientes(nombre),usuarios(nombre),servicios(nombre)&order=fecha_programada.asc'),
       api('roles?select=*')
     ]);
-  } catch(e) { console.error(e); }
+  }catch(e){console.error(e);}
 }
-function showTab(tab) {
-  currentTab = tab;
-  document.querySelectorAll('.nav-btn').forEach((b,i) => b.classList.toggle('active', ['dashboard','tareas','clientes','equipo'][i] === tab));
+
+function showTab(t){
+  tab=t;
+  document.querySelectorAll('.nav-btn').forEach((b,i)=>b.classList.toggle('active',['dashboard','tareas','clientes','equipo'][i]===t));
   render();
 }
-function render() {
-  const el = document.getElementById('main-content');
-  if (currentTab === 'dashboard') el.innerHTML = renderDashboard();
-  if (currentTab === 'tareas') el.innerHTML = renderTareas();
-  if (currentTab === 'clientes') el.innerHTML = renderClientes();
-  if (currentTab === 'equipo') el.innerHTML = renderEquipo();
+
+function render(){
+  const el=document.getElementById('main-content');
+  if(tab==='dashboard')el.innerHTML=rDash();
+  if(tab==='tareas')el.innerHTML=rTareas();
+  if(tab==='clientes')el.innerHTML=rClientes();
+  if(tab==='equipo')el.innerHTML=rEquipo();
 }
-function renderDashboard() {
-  const pending = tareas.filter(t => t.estado === 'Pendiente').length;
-  const done = tareas.filter(t => t.estado === 'Completado').length;
-  const today = new Date().toISOString().split('T')[0];
-  const todayTasks = tareas.filter(t => t.fecha_programada === today);
-  const inprogress = tareas.filter(t => t.estado === 'En progreso');
-  return `
-    <div class="stats-grid">
-      <div class="stat-card"><div class="stat-num">${clientes.length}</div><div class="stat-label">Clientes</div></div>
-      <div class="stat-card"><div class="stat-num">${tareas.length}</div><div class="stat-label">Tareas totales</div></div>
-      <div class="stat-card"><div class="stat-num" style="color:var(--warning)">${pending}</div><div class="stat-label">Pendientes</div></div>
-      <div class="stat-card"><div class="stat-num" style="color:var(--green-mid)">${done}</div><div class="stat-label">Completadas</div></div>
-    </div>
-    <div class="section-title">📅 Tareas de hoy</div>
-    ${todayTasks.length === 0 ? '<div class="empty"><div class="empty-icon">☀️</div><div class="empty-text">No hay tareas para hoy</div></div>' : todayTasks.map(t => taskItem(t)).join('')}
-    ${inprogress.length > 0 ? `<div class="section-title" style="margin-top:16px">🔄 En progreso</div>${inprogress.map(t => taskItem(t)).join('')}` : ''}
-  `;
+
+function rDash(){
+  const p=TA.filter(t=>t.estado==='Pendiente').length;
+  const d=TA.filter(t=>t.estado==='Completado').length;
+  const hoy=new Date().toISOString().split('T')[0];
+  const hT=TA.filter(t=>t.fecha_programada===hoy);
+  const ip=TA.filter(t=>t.estado==='En progreso');
+  return '<div class="stats-grid">'+
+    '<div class="stat-card"><div class="stat-num">'+CL.length+'</div><div class="stat-label">Clientes</div></div>'+
+    '<div class="stat-card"><div class="stat-num">'+TA.length+'</div><div class="stat-label">Tareas</div></div>'+
+    '<div class="stat-card"><div class="stat-num" style="color:var(--warning)">'+p+'</div><div class="stat-label">Pendientes</div></div>'+
+    '<div class="stat-card"><div class="stat-num" style="color:var(--green-mid)">'+d+'</div><div class="stat-label">Completadas</div></div>'+
+    '</div><div class="section-title">Tareas de hoy</div>'+
+    (hT.length===0?'<div class="empty"><div class="empty-icon">☀️</div><div class="empty-text">No hay tareas para hoy</div></div>':hT.map(tI).join(''))+
+    (ip.length>0?'<div class="section-title" style="margin-top:16px">🔄 En progreso</div>'+ip.map(tI).join(''):'');
 }
-function taskItem(t) {
-  return `<div class="task-item">
-    <div class="task-check ${t.estado === 'Completado' ? 'done' : ''}" onclick="toggleTask('${t.id}','${t.estado}')">${t.estado === 'Completado' ? '✓' : ''}</div>
-    <div class="task-info">
-      <div class="task-title">${t.titulo}</div>
-      <div class="task-meta">${t.clientes?.nombre || '—'} · ${t.usuarios?.nombre || 'Sin asignar'}${t.hora_inicio ? ' · ' + t.hora_inicio.slice(0,5) : ''}</div>
-      <span class="badge ${t.estado === 'Pendiente' ? 'badge-pending' : t.estado === 'En progreso' ? 'badge-progress' : 'badge-done'}">${t.estado}</span>
-    </div>
-    <button class="btn btn-sm btn-secondary" onclick="editTask('${t.id}')">✏️</button>
-  </div>`;
+
+function tI(t){
+  return '<div class="task-item">'+
+    '<div class="task-check '+(t.estado==='Completado'?'done':'')+'" onclick="tog(\''+t.id+'\',\''+t.estado+'\')">'+(t.estado==='Completado'?'✓':'')+'</div>'+
+    '<div class="task-info">'+
+      '<div class="task-title">'+t.titulo+'</div>'+
+      '<div class="task-meta">'+(t.clientes?.nombre||'—')+' · '+(t.usuarios?.nombre||'Sin asignar')+(t.hora_inicio?' · '+t.hora_inicio.slice(0,5):'')+'</div>'+
+      '<span class="badge '+(t.estado==='Pendiente'?'badge-pending':t.estado==='En progreso'?'badge-progress':'badge-done')+'">'+t.estado+'</span>'+
+    '</div>'+
+    '<button class="btn btn-sm btn-secondary" onclick="edT(\''+t.id+'\')">✏️</button>'+
+  '</div>';
 }
-function renderTareas() {
-  return `<div class="section-title">Todas las tareas (${tareas.length})</div>
-    ${tareas.length === 0 ? '<div class="empty"><div class="empty-icon">✅</div><div class="empty-text">No hay tareas.<br>Tocá + para crear una.</div></div>' : tareas.map(t => taskItem(t)).join('')}`;
+
+function rTareas(){
+  return '<div class="section-title">Tareas ('+TA.length+')</div>'+
+    (TA.length===0?'<div class="empty"><div class="empty-icon">✅</div><div class="empty-text">No hay tareas.<br>Tocá + para crear.</div></div>':TA.map(tI).join(''));
 }
-function renderClientes() {
-  return `<div class="section-title">Clientes (${clientes.length})</div>
-    ${clientes.length === 0 ? '<div class="empty"><div class="empty-icon">👤</div><div class="empty-text">No hay clientes.<br>Tocá + para agregar.</div></div>'
-    : clientes.map(c => `<div class="card">
-      <div class="card-header"><div><div class="card-title">${c.nombre}</div><div class="card-sub">${c.direccion || 'Sin dirección'}</div></div>
-      <span class="badge ${c.estado === 'Activo' ? 'badge-active' : 'badge-paused'}">${c.estado || 'Activo'}</span></div>
-      <div class="card-body">${c.telefono ? '📞 ' + c.telefono : ''}${c.email ? ' · ✉️ ' + c.email : ''}</div>
-      <div style="margin-top:10px;display:flex;gap:8px">
-        <button class="btn btn-sm btn-secondary" onclick="editCliente('${c.id}')">✏️ Editar</button>
-        <button class="btn btn-sm btn-primary" onclick="newTaskForCliente('${c.id}')">+ Tarea</button>
-      </div></div>`).join('')}`;
+
+function tpI(t){return t==='empresa'?'🏢':t==='barrio'?'🏘️':'👤';}
+function tpL(t){return t==='empresa'?'Empresa':t==='barrio'?'Barrio/Consorcio':'Persona física';}
+
+function rClientes(){
+  return '<div class="section-title">Clientes ('+CL.length+')</div>'+
+    (CL.length===0?'<div class="empty"><div class="empty-icon">👤</div><div class="empty-text">No hay clientes.<br>Tocá + para agregar.</div></div>':
+    CL.map(c=>{
+      const tp=c.tipo_cliente||'persona';
+      const ct=c.contacto_nombre?
+        '<div class="contact-card">'+
+          '<div class="contact-row">👤 <b>'+c.contacto_nombre+'</b>'+(c.contacto_cargo?' — '+c.contacto_cargo:'')+'</div>'+
+          (c.contacto_telefono?'<div class="contact-row">📞 '+c.contacto_telefono+'</div>':'')+
+          (c.contacto_email?'<div class="contact-row">✉️ '+c.contacto_email+'</div>':'')+
+        '</div>':'';
+      return '<div class="card">'+
+        '<div class="card-header">'+
+          '<div><div class="card-title">'+tpI(tp)+' '+c.nombre+'</div><div class="card-sub">'+(c.direccion||'Sin dirección')+'</div></div>'+
+          '<div style="display:flex;flex-direction:column;align-items:flex-end;gap:4px">'+
+            '<span class="badge '+(c.estado==='Activo'?'badge-active':'badge-paused')+'">'+(c.estado||'Activo')+'</span>'+
+            '<span class="badge badge-type">'+tpL(tp)+'</span>'+
+          '</div>'+
+        '</div>'+
+        (tp==='persona'?'<div class="card-body">'+(c.telefono?'📞 '+c.telefono:'')+(c.email?' · ✉️ '+c.email:'')+'</div>':ct)+
+        '<div style="margin-top:10px;display:flex;gap:8px">'+
+          '<button class="btn btn-sm btn-secondary" onclick="edC(\''+c.id+'\')">✏️ Editar</button>'+
+          '<button class="btn btn-sm btn-primary" onclick="nTC(\''+c.id+'\')">+ Tarea</button>'+
+        '</div></div>';
+    }).join(''));
 }
-function renderEquipo() {
-  return `<div class="section-title">Equipo (${usuarios.length})</div>
-    ${usuarios.length === 0 ? '<div class="empty"><div class="empty-icon">👷</div><div class="empty-text">No hay equipo.<br>Tocá + para agregar.</div></div>'
-    : usuarios.map(u => `<div class="card">
-      <div class="card-header"><div><div class="card-title">${u.nombre}</div><div class="card-sub">${u.roles?.nombre || 'Sin rol'}${u.celula ? ' · Célula: ' + u.celula : ''}</div></div>
-      <span class="badge ${u.activo ? 'badge-active' : 'badge-paused'}">${u.activo ? 'Activo' : 'Inactivo'}</span></div>
-      ${u.telefono || u.email ? `<div class="card-body">${u.telefono ? '📞 ' + u.telefono : ''}${u.email ? ' · ✉️ ' + u.email : ''}</div>` : ''}
-    </div>`).join('')}`;
+
+function rEquipo(){
+  return '<div class="section-title">Equipo ('+US.length+')</div>'+
+    (US.length===0?'<div class="empty"><div class="empty-icon">👷</div><div class="empty-text">No hay equipo.<br>Tocá + para agregar.</div></div>':
+    US.map(u=>
+      '<div class="card">'+
+        '<div class="card-header">'+
+          '<div><div class="card-title">'+u.nombre+'</div><div class="card-sub">'+(u.roles?.nombre||'Sin rol')+(u.celula?' · Célula: '+u.celula:'')+'</div></div>'+
+          '<div style="display:flex;gap:6px;align-items:center">'+
+            '<span class="badge '+(u.activo?'badge-active':'badge-paused')+'">'+(u.activo?'Activo':'Inactivo')+'</span>'+
+            '<button class="btn btn-sm btn-secondary" onclick="edU(\''+u.id+'\')">✏️</button>'+
+          '</div>'+
+        '</div>'+
+        (u.telefono||u.email?'<div class="card-body">'+(u.telefono?'📞 '+u.telefono:'')+(u.email?' · ✉️ '+u.email:'')+'</div>':'')+
+      '</div>'
+    ).join(''));
 }
-function openFab() {
-  if (currentTab === 'tareas' || currentTab === 'dashboard') openModalTarea();
-  else if (currentTab === 'clientes') openModalCliente();
-  else if (currentTab === 'equipo') openModalUsuario();
+
+function openFab(){
+  if(tab==='tareas'||tab==='dashboard')mT();
+  else if(tab==='clientes')mC();
+  else if(tab==='equipo')mU();
 }
-function openModal(html) { document.getElementById('modal-content').innerHTML = html; document.getElementById('modal-overlay').classList.add('open'); }
-function closeModal(e) { if (!e || e.target === document.getElementById('modal-overlay')) document.getElementById('modal-overlay').classList.remove('open'); }
-function openModalTarea(clienteId = '') {
-  const co = clientes.map(c => `<option value="${c.id}" ${c.id === clienteId ? 'selected' : ''}>${c.nombre}</option>`).join('');
-  const uo = usuarios.map(u => `<option value="${u.id}">${u.nombre}</option>`).join('');
-  const so = servicios.map(s => `<option value="${s.id}">${s.nombre}</option>`).join('');
-  openModal(`<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:18px"><div class="modal-title" style="margin:0">Nueva tarea</div><button class="modal-close" onclick="closeModal()">✕</button></div>
-    <div class="form-group"><label class="form-label">Título *</label><input class="form-control" id="f-titulo" placeholder="Ej: Corte de césped"></div>
-    <div class="form-group"><label class="form-label">Cliente</label><select class="form-control" id="f-cliente"><option value="">Sin cliente</option>${co}</select></div>
-    <div class="form-group"><label class="form-label">Servicio</label><select class="form-control" id="f-servicio"><option value="">Seleccionar...</option>${so}</select></div>
-    <div class="form-group"><label class="form-label">Asignar a</label><select class="form-control" id="f-asignado"><option value="">Sin asignar</option>${uo}</select></div>
-    <div class="form-row">
-      <div class="form-group"><label class="form-label">Fecha</label><input class="form-control" id="f-fecha" type="date" value="${new Date().toISOString().split('T')[0]}"></div>
-      <div class="form-group"><label class="form-label">Hora</label><input class="form-control" id="f-hora" type="time"></div>
-    </div>
-    <div class="form-group"><label class="form-label">Observaciones</label><textarea class="form-control" id="f-obs" rows="2"></textarea></div>
-    <div class="form-actions"><button class="btn btn-secondary" onclick="closeModal()">Cancelar</button><button class="btn btn-primary" onclick="saveTarea()">Guardar</button></div>`);
+function openM(h){document.getElementById('modal-content').innerHTML=h;document.getElementById('modal-overlay').classList.add('open');}
+function closeModal(e){if(!e||e.target===document.getElementById('modal-overlay'))document.getElementById('modal-overlay').classList.remove('open');}
+
+function selTp(t){
+  document.querySelectorAll('.type-btn').forEach(b=>b.classList.remove('selected'));
+  document.getElementById('tp-'+t).classList.add('selected');
+  document.getElementById('fp').classList.toggle('hidden',t!=='persona');
+  document.getElementById('fe').classList.toggle('hidden',t!=='empresa');
+  document.getElementById('fb').classList.toggle('hidden',t!=='barrio');
+  document.getElementById('htp').value=t;
 }
-function openModalCliente() {
-  const uo = usuarios.map(u => `<option value="${u.id}">${u.nombre}</option>`).join('');
-  openModal(`<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:18px"><div class="modal-title" style="margin:0">Nuevo cliente</div><button class="modal-close" onclick="closeModal()">✕</button></div>
-    <div class="form-group"><label class="form-label">Nombre *</label><input class="form-control" id="f-nombre" placeholder="Nombre del cliente"></div>
-    <div class="form-group"><label class="form-label">Dirección</label><input class="form-control" id="f-dir"></div>
-    <div class="form-row">
-      <div class="form-group"><label class="form-label">Teléfono</label><input class="form-control" id="f-tel" type="tel"></div>
-      <div class="form-group"><label class="form-label">Email</label><input class="form-control" id="f-email" type="email"></div>
-    </div>
-    <div class="form-group"><label class="form-label">Responsable</label><select class="form-control" id="f-resp"><option value="">Sin asignar</option>${uo}</select></div>
-    <div class="form-group"><label class="form-label">Estado</label><select class="form-control" id="f-estado"><option>Activo</option><option>Prospecto</option><option>Pausado</option></select></div>
-    <div class="form-group"><label class="form-label">Notas</label><textarea class="form-control" id="f-notas" rows="2"></textarea></div>
-    <div class="form-actions"><button class="btn btn-secondary" onclick="closeModal()">Cancelar</button><button class="btn btn-primary" onclick="saveCliente()">Guardar</button></div>`);
+
+function tpSel(s){s=s||'persona';return '<input type="hidden" id="htp" value="'+s+'"><div class="type-selector">'+
+  '<button type="button" class="type-btn '+(s==='persona'?'selected':'')+'" id="tp-persona" onclick="selTp(\'persona\')"><span class="type-icon">👤</span>Persona</button>'+
+  '<button type="button" class="type-btn '+(s==='empresa'?'selected':'')+'" id="tp-empresa" onclick="selTp(\'empresa\')"><span class="type-icon">🏢</span>Empresa</button>'+
+  '<button type="button" class="type-btn '+(s==='barrio'?'selected':'')+'" id="tp-barrio" onclick="selTp(\'barrio\')"><span class="type-icon">🏘️</span>Barrio</button>'+
+'</div>';}
+
+function fP(c){c=c||{};return '<div id="fp"><div class="form-row">'+
+  '<div class="form-group"><label class="form-label">Teléfono</label><input class="form-control" id="f-tel" type="tel" value="'+(c.telefono||'')+'"></div>'+
+  '<div class="form-group"><label class="form-label">Email</label><input class="form-control" id="f-email" type="email" value="'+(c.email||'')+'"></div>'+
+'</div></div>';}
+
+function fE(c){c=c||{};return '<div id="fe"><div class="section-divider">Contacto en la empresa</div>'+
+  '<div class="form-group"><label class="form-label">Nombre del contacto</label><input class="form-control" id="f-cn" value="'+(c.contacto_nombre||'')+'"></div>'+
+  '<div class="form-group"><label class="form-label">Cargo</label><input class="form-control" id="f-cc" value="'+(c.contacto_cargo||'')+'"></div>'+
+  '<div class="form-row">'+
+    '<div class="form-group"><label class="form-label">Teléfono</label><input class="form-control" id="f-ct" type="tel" value="'+(c.contacto_telefono||'')+'"></div>'+
+    '<div class="form-group"><label class="form-label">Email</label><input class="form-control" id="f-ce" type="email" value="'+(c.contacto_email||'')+'"></div>'+
+  '</div></div>';}
+
+function fB(c){c=c||{};return '<div id="fb"><div class="section-divider">Datos del administrador</div>'+
+  '<div class="form-group"><label class="form-label">Nombre del administrador</label><input class="form-control" id="f-cn" value="'+(c.contacto_nombre||'')+'"></div>'+
+  '<div class="form-row">'+
+    '<div class="form-group"><label class="form-label">Teléfono</label><input class="form-control" id="f-ct" type="tel" value="'+(c.contacto_telefono||'')+'"></div>'+
+    '<div class="form-group"><label class="form-label">Email</label><input class="form-control" id="f-ce" type="email" value="'+(c.contacto_email||'')+'"></div>'+
+  '</div>'+
+  '<div class="form-group"><label class="form-label">Dir. administración</label><input class="form-control" id="f-da" value="'+(c.dir_administracion||'')+'"></div>'+
+'</div>';}
+
+function mC(c){
+  var ie=!!c,tp=(c&&c.tipo_cliente)||'persona';
+  var uo=US.map(u=>'<option value="'+u.id+'"'+(c&&c.responsable_id===u.id?' selected':'')+'>'+u.nombre+'</option>').join('');
+  openM(
+    '<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:18px">'+
+      '<div class="modal-title" style="margin:0">'+(ie?'Editar':'Nuevo')+' cliente</div>'+
+      '<button class="modal-close" onclick="closeModal()">✕</button>'+
+    '</div>'+
+    '<div class="form-group"><label class="form-label">Nombre / Razón social *</label><input class="form-control" id="f-nom" value="'+(c?c.nombre:'')+'"></div>'+
+    '<div class="form-group"><label class="form-label">Tipo de cliente</label>'+tpSel(tp)+'</div>'+
+    fP(c)+fE(c)+fB(c)+
+    '<div class="form-group"><label class="form-label">Dirección del servicio</label><input class="form-control" id="f-dir" value="'+(c?c.direccion||'':'')+'"></div>'+
+    '<div class="form-group"><label class="form-label">Responsable interno</label><select class="form-control" id="f-resp"><option value="">Sin asignar</option>'+uo+'</select></div>'+
+    '<div class="form-group"><label class="form-label">Estado</label><select class="form-control" id="f-est">'+
+      '<option'+((!c||c.estado==='Activo')?' selected':'')+'>Activo</option>'+
+      '<option'+(c&&c.estado==='Prospecto'?' selected':'')+'>Prospecto</option>'+
+      '<option'+(c&&c.estado==='Pausado'?' selected':'')+'>Pausado</option>'+
+      '<option'+(c&&c.estado==='Baja'?' selected':'')+'>Baja</option>'+
+    '</select></div>'+
+    '<div class="form-group"><label class="form-label">Notas</label><textarea class="form-control" id="f-not" rows="2">'+(c?c.notas||'':'')+'</textarea></div>'+
+    '<div class="form-actions">'+
+      (ie?'<button class="btn btn-danger" onclick="delC(\''+c.id+'\')">🗑</button>':'')+
+      '<button class="btn btn-secondary" onclick="closeModal()">Cancelar</button>'+
+      '<button class="btn btn-primary" onclick="'+(ie?'upC(\''+c.id+'\')':'svC()')+'">Guardar</button>'+
+    '</div>'
+  );
+  selTp(tp);
 }
-function openModalUsuario() {
-  const ro = roles.map(r => `<option value="${r.id}">${r.nombre}</option>`).join('');
-  openModal(`<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:18px"><div class="modal-title" style="margin:0">Nuevo integrante</div><button class="modal-close" onclick="closeModal()">✕</button></div>
-    <div class="form-group"><label class="form-label">Nombre *</label><input class="form-control" id="f-nombre"></div>
-    <div class="form-group"><label class="form-label">Rol</label><select class="form-control" id="f-rol">${ro}</select></div>
-    <div class="form-group"><label class="form-label">Célula</label><input class="form-control" id="f-celula" placeholder="Ej: Norte, Sur"></div>
-    <div class="form-row">
-      <div class="form-group"><label class="form-label">Teléfono</label><input class="form-control" id="f-tel" type="tel"></div>
-      <div class="form-group"><label class="form-label">Email</label><input class="form-control" id="f-email" type="email"></div>
-    </div>
-    <div class="form-actions"><button class="btn btn-secondary" onclick="closeModal()">Cancelar</button><button class="btn btn-primary" onclick="saveUsuario()">Guardar</button></div>`);
+function edC(id){var c=CL.find(x=>x.id===id);if(c)mC(c);}
+
+function mU(u){
+  var ie=!!u;
+  var ro=RO.map(r=>'<option value="'+r.id+'"'+(u&&u.rol_id===r.id?' selected':'')+'>'+r.nombre+'</option>').join('');
+  openM(
+    '<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:18px">'+
+      '<div class="modal-title" style="margin:0">'+(ie?'Editar':'Nuevo')+' integrante</div>'+
+      '<button class="modal-close" onclick="closeModal()">✕</button>'+
+    '</div>'+
+    '<div class="form-group"><label class="form-label">Nombre *</label><input class="form-control" id="f-nom" value="'+(u?u.nombre:'')+'"></div>'+
+    '<div class="form-group"><label class="form-label">Rol</label><select class="form-control" id="f-rol">'+ro+'</select></div>'+
+    '<div class="form-group"><label class="form-label">Célula</label><input class="form-control" id="f-cel" value="'+(u?u.celula||'':'')+'"></div>'+
+    '<div class="form-row">'+
+      '<div class="form-group"><label class="form-label">Teléfono</label><input class="form-control" id="f-tel" type="tel" value="'+(u?u.telefono||'':'')+'"></div>'+
+      '<div class="form-group"><label class="form-label">Email</label><input class="form-control" id="f-email" type="email" value="'+(u?u.email||'':'')+'"></div>'+
+    '</div>'+
+    (ie?'<div class="form-group"><label class="form-label">Estado</label><select class="form-control" id="f-act">'+
+      '<option value="true"'+(u&&u.activo!==false?' selected':'')+'>Activo</option>'+
+      '<option value="false"'+(u&&u.activo===false?' selected':'')+'>Inactivo</option>'+
+    '</select></div>':'')+
+    '<div class="form-actions">'+
+      (ie?'<button class="btn btn-danger" onclick="delU(\''+u.id+'\')">🗑</button>':'')+
+      '<button class="btn btn-secondary" onclick="closeModal()">Cancelar</button>'+
+      '<button class="btn btn-primary" onclick="'+(ie?'upU(\''+u.id+'\')':'svU()')+'">Guardar</button>'+
+    '</div>'
+  );
 }
-function newTaskForCliente(id) { openModalTarea(id); }
-function editTask(id) {
-  const t = tareas.find(x => x.id === id);
-  if (!t) return;
-  const co = clientes.map(c => `<option value="${c.id}" ${c.id === t.cliente_id ? 'selected' : ''}>${c.nombre}</option>`).join('');
-  const uo = usuarios.map(u => `<option value="${u.id}" ${u.id === t.asignado_a ? 'selected' : ''}>${u.nombre}</option>`).join('');
-  openModal(`<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:18px"><div class="modal-title" style="margin:0">Editar tarea</div><button class="modal-close" onclick="closeModal()">✕</button></div>
-    <div class="form-group"><label class="form-label">Título</label><input class="form-control" id="f-titulo" value="${t.titulo}"></div>
-    <div class="form-group"><label class="form-label">Cliente</label><select class="form-control" id="f-cliente"><option value="">Sin cliente</option>${co}</select></div>
-    <div class="form-group"><label class="form-label">Asignar a</label><select class="form-control" id="f-asignado"><option value="">Sin asignar</option>${uo}</select></div>
-    <div class="form-row">
-      <div class="form-group"><label class="form-label">Fecha</label><input class="form-control" id="f-fecha" type="date" value="${t.fecha_programada || ''}"></div>
-      <div class="form-group"><label class="form-label">Estado</label><select class="form-control" id="f-estado">
-        <option ${t.estado==='Pendiente'?'selected':''}>Pendiente</option>
-        <option ${t.estado==='En progreso'?'selected':''}>En progreso</option>
-        <option ${t.estado==='Completado'?'selected':''}>Completado</option>
-      </select></div>
-    </div>
-    <div class="form-group"><label class="form-label">Observaciones</label><textarea class="form-control" id="f-obs" rows="2">${t.observaciones || ''}</textarea></div>
-    <div class="form-actions"><button class="btn btn-danger" onclick="deleteTask('${id}')">🗑 Eliminar</button><button class="btn btn-primary" onclick="updateTask('${id}')">Guardar</button></div>`);
+function edU(id){var u=US.find(x=>x.id===id);if(u)mU(u);}
+
+function mT(cid){
+  cid=cid||'';
+  var co=CL.map(c=>'<option value="'+c.id+'"'+(c.id===cid?' selected':'')+'>'+c.nombre+'</option>').join('');
+  var uo=US.map(u=>'<option value="'+u.id+'">'+u.nombre+'</option>').join('');
+  var so=SV.map(s=>'<option value="'+s.id+'">'+s.nombre+'</option>').join('');
+  openM(
+    '<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:18px">'+
+      '<div class="modal-title" style="margin:0">Nueva tarea</div>'+
+      '<button class="modal-close" onclick="closeModal()">✕</button>'+
+    '</div>'+
+    '<div class="form-group"><label class="form-label">Título *</label><input class="form-control" id="f-tit"></div>'+
+    '<div class="form-group"><label class="form-label">Cliente</label><select class="form-control" id="f-cli"><option value="">Sin cliente</option>'+co+'</select></div>'+
+    '<div class="form-group"><label class="form-label">Servicio</label><select class="form-control" id="f-srv"><option value="">Seleccionar...</option>'+so+'</select></div>'+
+    '<div class="form-group"><label class="form-label">Asignar a</label><select class="form-control" id="f-asi"><option value="">Sin asignar</option>'+uo+'</select></div>'+
+    '<div class="form-row">'+
+      '<div class="form-group"><label class="form-label">Fecha</label><input class="form-control" id="f-fec" type="date" value="'+new Date().toISOString().split('T')[0]+'"></div>'+
+      '<div class="form-group"><label class="form-label">Hora</label><input class="form-control" id="f-hor" type="time"></div>'+
+    '</div>'+
+    '<div class="form-group"><label class="form-label">Observaciones</label><textarea class="form-control" id="f-obs" rows="2"></textarea></div>'+
+    '<div class="form-actions"><button class="btn btn-secondary" onclick="closeModal()">Cancelar</button><button class="btn btn-primary" onclick="svT()">Guardar</button></div>'
+  );
 }
-function editCliente(id) {
-  const c = clientes.find(x => x.id === id);
-  if (!c) return;
-  openModal(`<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:18px"><div class="modal-title" style="margin:0">Editar cliente</div><button class="modal-close" onclick="closeModal()">✕</button></div>
-    <div class="form-group"><label class="form-label">Nombre</label><input class="form-control" id="f-nombre" value="${c.nombre}"></div>
-    <div class="form-group"><label class="form-label">Dirección</label><input class="form-control" id="f-dir" value="${c.direccion || ''}"></div>
-    <div class="form-row">
-      <div class="form-group"><label class="form-label">Teléfono</label><input class="form-control" id="f-tel" value="${c.telefono || ''}"></div>
-      <div class="form-group"><label class="form-label">Email</label><input class="form-control" id="f-email" value="${c.email || ''}"></div>
-    </div>
-    <div class="form-group"><label class="form-label">Estado</label><select class="form-control" id="f-estado">
-      <option ${c.estado==='Activo'?'selected':''}>Activo</option>
-      <option ${c.estado==='Prospecto'?'selected':''}>Prospecto</option>
-      <option ${c.estado==='Pausado'?'selected':''}>Pausado</option>
-    </select></div>
-    <div class="form-group"><label class="form-label">Notas</label><textarea class="form-control" id="f-notas" rows="2">${c.notas || ''}</textarea></div>
-    <div class="form-actions"><button class="btn btn-danger" onclick="deleteCliente('${id}')">🗑 Eliminar</button><button class="btn btn-primary" onclick="updateCliente('${id}')">Guardar</button></div>`);
+
+function edT(id){
+  var t=TA.find(x=>x.id===id);if(!t)return;
+  var co=CL.map(c=>'<option value="'+c.id+'"'+(c.id===t.cliente_id?' selected':'')+'>'+c.nombre+'</option>').join('');
+  var uo=US.map(u=>'<option value="'+u.id+'"'+(u.id===t.asignado_a?' selected':'')+'>'+u.nombre+'</option>').join('');
+  openM(
+    '<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:18px">'+
+      '<div class="modal-title" style="margin:0">Editar tarea</div>'+
+      '<button class="modal-close" onclick="closeModal()">✕</button>'+
+    '</div>'+
+    '<div class="form-group"><label class="form-label">Título</label><input class="form-control" id="f-tit" value="'+t.titulo+'"></div>'+
+    '<div class="form-group"><label class="form-label">Cliente</label><select class="form-control" id="f-cli"><option value="">Sin cliente</option>'+co+'</select></div>'+
+    '<div class="form-group"><label class="form-label">Asignar a</label><select class="form-control" id="f-asi"><option value="">Sin asignar</option>'+uo+'</select></div>'+
+    '<div class="form-row">'+
+      '<div class="form-group"><label class="form-label">Fecha</label><input class="form-control" id="f-fec" type="date" value="'+(t.fecha_programada||'')+'"></div>'+
+      '<div class="form-group"><label class="form-label">Estado</label><select class="form-control" id="f-est">'+
+        '<option'+(t.estado==='Pendiente'?' selected':'')+'>Pendiente</option>'+
+        '<option'+(t.estado==='En progreso'?' selected':'')+'>En progreso</option>'+
+        '<option'+(t.estado==='Completado'?' selected':'')+'>Completado</option>'+
+      '</select></div>'+
+    '</div>'+
+    '<div class="form-group"><label class="form-label">Observaciones</label><textarea class="form-control" id="f-obs" rows="2">'+(t.observaciones||'')+'</textarea></div>'+
+    '<div class="form-actions">'+
+      '<button class="btn btn-danger" onclick="delT(\''+id+'\')">🗑 Eliminar</button>'+
+      '<button class="btn btn-primary" onclick="upT(\''+id+'\')">Guardar</button>'+
+    '</div>'
+  );
 }
-async function saveTarea() {
-  const titulo = document.getElementById('f-titulo').value.trim();
-  if (!titulo) return alert('El título es obligatorio');
-  try {
-    await api('tareas', 'POST', { titulo, cliente_id: document.getElementById('f-cliente').value || null, servicio_id: document.getElementById('f-servicio').value || null, asignado_a: document.getElementById('f-asignado').value || null, fecha_programada: document.getElementById('f-fecha').value || null, hora_inicio: document.getElementById('f-hora').value || null, observaciones: document.getElementById('f-obs').value || null, estado: 'Pendiente' });
-    closeModal(); await loadAll(); render();
-  } catch(e) { alert('Error: ' + e.message); }
+function nTC(id){mT(id);}
+
+function gv(id){var el=document.getElementById(id);return el?el.value||null:null;}
+function gcf(tp){
+  if(tp==='persona')return{telefono:gv('f-tel'),email:gv('f-email'),contacto_nombre:null,contacto_cargo:null,contacto_telefono:null,contacto_email:null,dir_administracion:null};
+  if(tp==='empresa')return{telefono:null,email:null,contacto_nombre:gv('f-cn'),contacto_cargo:gv('f-cc'),contacto_telefono:gv('f-ct'),contacto_email:gv('f-ce'),dir_administracion:null};
+  return{telefono:null,email:null,contacto_nombre:gv('f-cn'),contacto_cargo:null,contacto_telefono:gv('f-ct'),contacto_email:gv('f-ce'),dir_administracion:gv('f-da')};
 }
-async function updateTask(id) {
-  try {
-    await api(`tareas?id=eq.${id}`, 'PATCH', { titulo: document.getElementById('f-titulo').value, cliente_id: document.getElementById('f-cliente').value || null, asignado_a: document.getElementById('f-asignado').value || null, fecha_programada: document.getElementById('f-fecha').value || null, estado: document.getElementById('f-estado').value, observaciones: document.getElementById('f-obs').value || null });
-    closeModal(); await loadAll(); render();
-  } catch(e) { alert('Error: ' + e.message); }
+
+async function svC(){
+  var n=document.getElementById('f-nom').value.trim();if(!n)return alert('El nombre es obligatorio');
+  var tp=document.getElementById('htp').value;
+  try{await api('clientes','POST',{nombre:n,tipo_cliente:tp,direccion:gv('f-dir'),responsable_id:gv('f-resp'),estado:document.getElementById('f-est').value,notas:gv('f-not'),...gcf(tp)});closeModal();await load();render();}
+  catch(e){alert('Error: '+e.message);}
 }
-async function deleteTask(id) {
-  if (!confirm('¿Eliminar esta tarea?')) return;
-  try { await api(`tareas?id=eq.${id}`, 'DELETE'); closeModal(); await loadAll(); render(); } catch(e) { alert('Error: ' + e.message); }
+async function upC(id){
+  var n=document.getElementById('f-nom').value.trim();if(!n)return alert('El nombre es obligatorio');
+  var tp=document.getElementById('htp').value;
+  try{await api('clientes?id=eq.'+id,'PATCH',{nombre:n,tipo_cliente:tp,direccion:gv('f-dir'),estado:document.getElementById('f-est').value,notas:gv('f-not'),...gcf(tp)});closeModal();await load();render();}
+  catch(e){alert('Error: '+e.message);}
 }
-async function toggleTask(id, estado) {
-  const next = estado === 'Pendiente' ? 'En progreso' : estado === 'En progreso' ? 'Completado' : 'Pendiente';
-  try { await api(`tareas?id=eq.${id}`, 'PATCH', { estado: next }); await loadAll(); render(); } catch(e) { alert('Error: ' + e.message); }
+async function delC(id){if(!confirm('¿Eliminar este cliente?'))return;try{await api('clientes?id=eq.'+id,'DELETE');closeModal();await load();render();}catch(e){alert('Error: '+e.message);}}
+
+async function svU(){
+  var n=document.getElementById('f-nom').value.trim();if(!n)return alert('El nombre es obligatorio');
+  try{await api('usuarios','POST',{nombre:n,rol_id:gv('f-rol'),celula:gv('f-cel'),telefono:gv('f-tel'),email:gv('f-email')});closeModal();await load();render();}
+  catch(e){alert('Error: '+e.message);}
 }
-async function saveCliente() {
-  const nombre = document.getElementById('f-nombre').value.trim();
-  if (!nombre) return alert('El nombre es obligatorio');
-  try {
-    await api('clientes', 'POST', { nombre, direccion: document.getElementById('f-dir').value || null, telefono: document.getElementById('f-tel').value || null, email: document.getElementById('f-email').value || null, responsable_id: document.getElementById('f-resp').value || null, estado: document.getElementById('f-estado').value, notas: document.getElementById('f-notas').value || null });
-    closeModal(); await loadAll(); render();
-  } catch(e) { alert('Error: ' + e.message); }
+async function upU(id){
+  var n=document.getElementById('f-nom').value.trim();if(!n)return alert('El nombre es obligatorio');
+  try{await api('usuarios?id=eq.'+id,'PATCH',{nombre:n,rol_id:gv('f-rol'),celula:gv('f-cel'),telefono:gv('f-tel'),email:gv('f-email'),activo:document.getElementById('f-act').value==='true'});closeModal();await load();render();}
+  catch(e){alert('Error: '+e.message);}
 }
-async function updateCliente(id) {
-  try {
-    await api(`clientes?id=eq.${id}`, 'PATCH', { nombre: document.getElementById('f-nombre').value, direccion: document.getElementById('f-dir').value || null, telefono: document.getElementById('f-tel').value || null, email: document.getElementById('f-email').value || null, estado: document.getElementById('f-estado').value, notas: document.getElementById('f-notas').value || null });
-    closeModal(); await loadAll(); render();
-  } catch(e) { alert('Error: ' + e.message); }
+async function delU(id){if(!confirm('¿Eliminar este integrante?'))return;try{await api('usuarios?id=eq.'+id,'DELETE');closeModal();await load();render();}catch(e){alert('Error: '+e.message);}}
+
+async function svT(){
+  var t=document.getElementById('f-tit').value.trim();if(!t)return alert('El título es obligatorio');
+  try{await api('tareas','POST',{titulo:t,cliente_id:gv('f-cli'),servicio_id:gv('f-srv'),asignado_a:gv('f-asi'),fecha_programada:gv('f-fec'),hora_inicio:gv('f-hor'),observaciones:gv('f-obs'),estado:'Pendiente'});closeModal();await load();render();}
+  catch(e){alert('Error: '+e.message);}
 }
-async function deleteCliente(id) {
-  if (!confirm('¿Eliminar este cliente?')) return;
-  try { await api(`clientes?id=eq.${id}`, 'DELETE'); closeModal(); await loadAll(); render(); } catch(e) { alert('Error: ' + e.message); }
+async function upT(id){
+  try{await api('tareas?id=eq.'+id,'PATCH',{titulo:document.getElementById('f-tit').value,cliente_id:gv('f-cli'),asignado_a:gv('f-asi'),fecha_programada:gv('f-fec'),estado:document.getElementById('f-est').value,observaciones:gv('f-obs')});closeModal();await load();render();}
+  catch(e){alert('Error: '+e.message);}
 }
-async function saveUsuario() {
-  const nombre = document.getElementById('f-nombre').value.trim();
-  if (!nombre) return alert('El nombre es obligatorio');
-  try {
-    await api('usuarios', 'POST', { nombre, rol_id: document.getElementById('f-rol').value || null, celula: document.getElementById('f-celula').value || null, telefono: document.getElementById('f-tel').value || null, email: document.getElementById('f-email').value || null });
-    closeModal(); await loadAll(); render();
-  } catch(e) { alert('Error: ' + e.message); }
+async function delT(id){if(!confirm('¿Eliminar esta tarea?'))return;try{await api('tareas?id=eq.'+id,'DELETE');closeModal();await load();render();}catch(e){alert('Error: '+e.message);}}
+
+async function tog(id,est){
+  var n=est==='Pendiente'?'En progreso':est==='En progreso'?'Completado':'Pendiente';
+  try{await api('tareas?id=eq.'+id,'PATCH',{estado:n});await load();render();}catch(e){alert('Error: '+e.message);}
 }
-(async () => { await loadAll(); render(); })();
+
+(async()=>{await load();render();})();
 </script>
 </body>
 </html>
